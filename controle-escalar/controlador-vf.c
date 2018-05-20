@@ -1,7 +1,6 @@
 /**
  * Controle Escalar V/f
- * */
-#pragma once
+ * */ 
 #include <math.h>
 
 #define pi 3.14159265358979323846
@@ -28,7 +27,7 @@ double kpW_L = 9.0, kiW_L = 10.0; // 5.5, kiW_L = .02; kiW_L = 0.0001
 /**
  * Rampa de Aceleração
  * */
-double, lim_rampa = 500, W_rampa_1 = 0, W_rampa = 0;
+double lim_rampa = 500, W_rampa_1 = 0, W_rampa = 0;
 
 void dqToABC_ControleVF(double* d, double* q, double* a, double* b, double* c)
 {
@@ -53,7 +52,7 @@ void intreg(double* dt, double* xin, double* xout)
 //void scalar_vfw__(double *dt, double *W_ref, double *W_med, double *v1, double *v2, double *v3, double *wRefRampa,double *erro,double *acaoControle,double *intErr) {
 void scalar_vfw__(double* dt, double* W_ref, double* W_med, double* v1, double* v2, double* v3, double* wRefRampa)
 {
-    double e_W, W, vref, vd, vq, W_cont, kp, ki;
+    double e_W, W, vref, vd, vq, W_cont, kp, ki,Tax;
     // Verificando se está ou não em baixa rotação e escolhendo os parâmetros de controle adequados
     if (fabs(*W_ref) >= wBaixaRotacao) {
         kp = kpW;
