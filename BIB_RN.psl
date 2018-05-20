@@ -1,0 +1,3158 @@
+PSCAD 4.2.0
+
+Settings
+ {
+ Id = "1438908471.1520531868"
+ Author = "rico.laisf"
+ Desc = ""
+ Arch = "windows"
+ Options = 32
+ Build = 18
+ Warn = 1
+ Check = 15
+ Libs = ""
+ Source = ""
+ RunInfo = 
+  {
+  Fin = 0.5
+  Step = 5e-005
+  Plot = 0.00025
+  Chat = 0.001
+  Brch = 0.0005
+  Lat = 100
+  Options = 0
+  Advanced = 4607
+  Debug = 0
+  StartFile = ""
+  OFile = "noname.out"
+  SFile = "noname.snp"
+  SnapTime = 0.3
+  Mruns = 10
+  Mrunfile = 0
+  StartType = 0
+  PlotType = 0
+  SnapType = 0
+  MrunType = "mrun"
+  }
+
+ }
+
+Definitions
+ {
+ Component("abctoalfbet0")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Choice("Inv",4,4,160,11,2)
+     {
+     Style = 0
+     Desc = "Invariante em"
+     Def = "0"
+     Len = 15
+     *0 = "Amplitude"
+     *1 = "Potência"
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("A",-54,-36)
+    {
+    Type = Real
+    }
+   Input("B",-54,0)
+    {
+    Type = Real
+    }
+   Input("C",-54,36)
+    {
+    Type = Real
+    }
+   Output("zero",54,-36)
+    {
+    Type = Real
+    }
+   Output("Alf",54,0)
+    {
+    Type = Real
+    }
+   Output("Bet",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,A)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,B)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,C)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode)
+   Line(54,-36,39,-36)
+   Pen(,,,Alf)
+   Line(54,0,39,0)
+   Pen(,,,Bet)
+   Line(54,36,39,36)
+   Text(0,-22,"ABC")
+   Text(0,6,"to")
+   Text(0,34,"AlfBet0")
+   Text(-34,-39,"A")
+   Text(-35,-4,"B")
+   Text(-34,32,"C")
+   Text(26,-40,"zero")
+   Text(31,-4,"Alf")
+   Text(29,32,"Bet")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!   ABC to alfa beta zero
+
+	#IF inv == 0
+		$zero = (2./3.) * ($A*(1/sqrt_2) + $B*(1/sqrt_2) + $C*(1/sqrt_2))
+		$Alf =  (2./3.) * ($A - ($B / 2.) - ($C / 2.))
+		$Bet =  (2./3.) * ($B*(sqrt_3 /2.)- $C*(sqrt_3 /2.))
+	#ELSE
+		$zero = sqrt(2./3.) * ($A*(1/sqrt_2) + $B*(1/sqrt_2) + $C*(1/sqrt_2))
+		$Alf =  sqrt(2./3.) * ($A - ($B / 2.) - ($C / 2.))
+		$Bet =  sqrt(2./3.) * ($B*(sqrt_3 /2.)- $C*(sqrt_3 /2.))
+	#ENDIF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("AlfBetzerotoabc")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Choice("inv",4,4,160,11,2)
+     {
+     Style = 0
+     Desc = "Invariante em"
+     Def = "0"
+     Len = 15
+     *0 = "Amplitude"
+     *1 = "Potência"
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("zero",-54,-36)
+    {
+    Type = Real
+    }
+   Input("Alf",-54,0)
+    {
+    Type = Real
+    }
+   Input("Bet",-54,36)
+    {
+    Type = Real
+    }
+   Output("A",54,-36)
+    {
+    Type = Real
+    }
+   Output("B",54,0)
+    {
+    Type = Real
+    }
+   Output("C",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,zero)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,Alf)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,Bet)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,A)
+   Line(54,-36,39,-36)
+   Pen(,,,B)
+   Line(54,0,39,0)
+   Pen(,,,C)
+   Line(54,36,39,36)
+   Text(0,-22,"AlfBet0")
+   Text(0,6,"to")
+   Text(0,34,"ABC")
+   Text(-27,-40,"zero")
+   Text(-32,-3,"Alf")
+   Text(-29,32,"Bet")
+   Text(34,-39,"A")
+   Text(34,-3,"B")
+   Text(34,33,"C")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!   alfa beta zero  to ABC
+
+	#IF inv == 0
+		$A = ($zero*(1/sqrt_2) + $Alf)
+		$B = ($zero*(1/sqrt_2) - ($Alf / 2.) + ($Bet*(sqrt_3 /2.)))
+		$C = ($zero*(1/sqrt_2) - ($Alf / 2.) - ($Bet*(sqrt_3 /2.)))
+	#ELSE
+		$A = sqrt(2./3.) * ($zero*(1/sqrt_2) + $Alf)
+		$B = sqrt(2./3.) * ($zero*(1/sqrt_2) - ($Alf / 2.) + ($Bet*(sqrt_3 /2.)))
+		$C = sqrt(2./3.) * ($zero*(1/sqrt_2) - ($Alf / 2.) - ($Bet*(sqrt_3 /2.)))
+	#ENDIF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("ABCtoAlfBet")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Choice("inv",4,4,160,11,2)
+     {
+     Style = 0
+     Desc = "Invariante em"
+     Def = "1"
+     Len = 15
+     *0 = "Amplitude"
+     *1 = "Potência"
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("A",-54,-36)
+    {
+    Type = Real
+    }
+   Input("B",-54,0)
+    {
+    Type = Real
+    }
+   Input("C",-54,36)
+    {
+    Type = Real
+    }
+   Output("Alf",54,-18)
+    {
+    Type = Real
+    }
+   Output("Bet",54,18)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,A)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,B)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,C)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,Alf)
+   Line(54,-18,39,-18)
+   Pen(,,,Bet)
+   Line(54,18,39,18)
+   Text(0,-22,"ABC")
+   Text(0,6,"to")
+   Text(0,34,"AlfBet")
+   Text(-35,-39,"A")
+   Text(-35,-4,"B")
+   Text(-33,33,"C")
+   Text(31,-21,"Alf")
+   Text(29,14,"Bet")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!   ABC to alfa beta 
+
+	#IF inv == 0
+		$Alf = (2./3.) * ($A - ($B / 2.) - ($C / 2.))
+		$Bet = (2./3.) * ($B*(sqrt_3 /2.) - $C*(sqrt_3 /2.))
+	#ELSE
+		$Alf = sqrt(2./3.) * ($A - ($B / 2.) - ($C / 2.))
+		$Bet = sqrt(2./3.) * ($B*(sqrt_3 /2.) - $C*(sqrt_3 /2.))
+	#ENDIF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("AflBettoABC")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Choice("inv",4,4,160,11,2)
+     {
+     Style = 0
+     Desc = "Invariante em"
+     Def = "0"
+     Len = 15
+     *0 = "Amplitude"
+     *1 = "Potência"
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("Alf",-54,-18)
+    {
+    Type = Real
+    }
+   Input("Bet",-54,18)
+    {
+    Type = Real
+    }
+   Output("A",54,-36)
+    {
+    Type = Real
+    }
+   Output("B",54,0)
+    {
+    Type = Real
+    }
+   Output("C",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,Alf)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,Bet)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,A)
+   Line(54,-36,39,-36)
+   Pen(,,,B)
+   Line(54,0,39,0)
+   Pen(,,,C)
+   Line(54,36,39,36)
+   Text(0,-22,"AlfBet")
+   Text(0,6,"to")
+   Text(0,34,"ABC")
+   Text(-32,-21,"Alf")
+   Text(-30,15,"Bet")
+   Text(34,-39,"A")
+   Text(33,-3,"B")
+   Text(33,32,"C")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!   alfa beta  to ABC
+
+	#IF inv == 0
+		$A = ( $Alf)
+		$B = ( - ($Alf / 2.) + ($Bet*(sqrt_3 /2.)))
+		$C = ( - ($Alf / 2.) - ($Bet*(sqrt_3 /2.)))
+	#ELSE
+		$A = sqrt(2./3.) * ( $Alf)
+		$B = sqrt(2./3.) * ( - ($Alf / 2.) + ($Bet*(sqrt_3 /2.)))
+		$C = sqrt(2./3.) * ( - ($Alf / 2.) - ($Bet*(sqrt_3 /2.)))
+	#ENDIF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("AlfBettoDQ")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Alf",-54,-18)
+    {
+    Type = Real
+    }
+   Input("Bet",-54,18)
+    {
+    Type = Real
+    }
+   Output("D",54,-18)
+    {
+    Type = Real
+    }
+   Output("Q",54,18)
+    {
+    Type = Real
+    }
+   Input("Teta",0,54)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Pen(ByNode,ByNode,ByNode,Alf)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,Bet)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,D)
+   Line(54,-18,39,-18)
+   Pen(,,,Q)
+   Line(54,18,39,18)
+   Pen(,,,Teta)
+   Line(0,54,0,39)
+   Pen(,Solid)
+   Line(0,39,-5,44)
+   Line(0,39,5,44)
+   Text(0,-13,"AlfBet")
+   Text(0,6,"to")
+   Text(0,25,"DQ")
+   Text(-32,-22,"Alf")
+   Text(-29,14,"Bet")
+   Text(33,-21,"D")
+   Text(33,15,"Q")
+   Text(-2,36,"Teta")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!   alfa beta to DQ
+	
+	$Q = -$Alf * cos($teta) - $Bet *sin($teta)
+	$D = -$Bet * cos($teta) + $Alf *sin($teta)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("DQtoAlfBet")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("inD",-54,-18)
+    {
+    Type = Real
+    }
+   Input("inQ",-54,18)
+    {
+    Type = Real
+    }
+   Output("Alf",54,-18)
+    {
+    Type = Real
+    }
+   Output("Bet",54,18)
+    {
+    Type = Real
+    }
+   Input("Teta",0,54)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Pen(ByNode,ByNode,ByNode)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,Alf)
+   Line(54,-18,39,-18)
+   Pen(,,,Bet)
+   Line(54,18,39,18)
+   Pen(,,,Teta)
+   Line(0,54,0,39)
+   Pen(,Solid)
+   Line(0,39,-5,44)
+   Line(0,39,5,44)
+   Text(0,-13,"DQ")
+   Text(0,6,"to")
+   Text(0,25,"AlfBet")
+   Text(-34,-21,"D")
+   Text(-34,14,"Q")
+   Text(31,-21,"Alf")
+   Text(29,14,"Bet")
+   Text(-2,35,"Teta")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!   DQ to alfa beta
+
+	$Bet = -$inD * cos($Teta) + $inQ *sin($Teta)
+	$Alf = +$inQ * cos($Teta) + $inD *sin($Teta)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("ABCtoDQ")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Choice("inv",4,4,160,11,2)
+     {
+     Style = 0
+     Desc = "Invariante em"
+     Def = "0"
+     Len = 15
+     *0 = "Amplitude"
+     *1 = "Potência"
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("A",-54,-36)
+    {
+    Type = Real
+    }
+   Input("B",-54,0)
+    {
+    Type = Real
+    }
+   Input("C",-54,36)
+    {
+    Type = Real
+    }
+   Output("D",54,-18)
+    {
+    Type = Real
+    }
+   Output("Q",54,18)
+    {
+    Type = Real
+    }
+   Input("teta",0,72)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,A)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,B)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,C)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,D)
+   Line(54,-18,39,-18)
+   Pen(,,,Q)
+   Line(54,18,39,18)
+   Pen(,,,teta)
+   Line(0,72,0,57)
+   Pen(,Solid)
+   Line(0,57,-5,62)
+   Line(0,57,5,62)
+   Text(0,-22,"ABC")
+   Text(0,6,"to")
+   Text(0,34,"DQ")
+   Text(-34,-39,"A")
+   Text(-34,-4,"B")
+   Text(-33,32,"C")
+   Text(33,-22,"D")
+   Text(33,14,"Q")
+   Text(0,53,"Teta")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!	ABC TO DQ
+
+	#IF inv == 0
+		$D = ($A * sin($teta) + $B * sin($teta - PI2_BY3) + $C * sin($teta + PI2_BY3))* 2./3.
+		$Q = ($A * cos($teta) + $B * cos($teta - PI2_BY3) + $C * cos($teta + PI2_BY3))* 2./3.
+	#ELSE
+		$D = ($A * sin($teta) + $B * sin($teta - PI2_BY3) + $C * sin($teta + PI2_BY3))* sqrt(2./3.)
+		$Q = ($A * cos($teta) + $B * cos($teta - PI2_BY3) + $C * cos($teta + PI2_BY3))* sqrt(2./3.)
+
+"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("DQtoABC")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Choice("inv",4,4,160,11,2)
+     {
+     Style = 0
+     Desc = "Invariante em"
+     Def = "0"
+     Len = 15
+     *0 = "Amplitude"
+     *1 = "Potência"
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("D",-54,-18)
+    {
+    Type = Real
+    }
+   Input("Q",-54,18)
+    {
+    Type = Real
+    }
+   Output("A",54,-36)
+    {
+    Type = Real
+    }
+   Output("B",54,0)
+    {
+    Type = Real
+    }
+   Output("C",54,36)
+    {
+    Type = Real
+    }
+   Input("teta",0,72)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,D)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,Q)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,A)
+   Line(54,-36,39,-36)
+   Pen(,,,B)
+   Line(54,0,39,0)
+   Pen(,,,C)
+   Line(54,36,39,36)
+   Pen(,,,teta)
+   Line(0,72,0,57)
+   Pen(,Solid)
+   Line(0,57,-5,62)
+   Line(0,57,5,62)
+   Text(0,-22,"DQ")
+   Text(0,6,"to")
+   Text(0,34,"ABC")
+   Text(-35,-22,"D")
+   Text(-33,14,"Q")
+   Text(33,-39,"A")
+   Text(33,-4,"B")
+   Text(33,33,"C")
+   Text(0,53,"Teta")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+! DQ TO ABC
+
+	#IF inv == 0
+		$A = $D * sin($teta) + $Q * cos($teta)
+		$B = $D * sin($teta - PI2_BY3) + $Q * cos($teta - PI2_BY3)
+		$C = $D * sin($teta + PI2_BY3) + $Q * cos($teta + PI2_BY3)
+	#ELSE
+		$A = sqrt(2./3.) * ( $D * sin($teta) + $Q * cos($teta))
+		$B = sqrt(2./3.) * ( $D * sin($teta - PI2_BY3) + $Q * cos($teta - PI2_BY3))
+		$C = sqrt(2./3.) * ( $D * sin($teta + PI2_BY3) + $Q * cos($teta + PI2_BY3))
+	#ENDIF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("svpwm")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Vrefa",-54,-36)
+    {
+    Type = Real
+    }
+   Input("Vrefb",-54,0)
+    {
+    Type = Real
+    }
+   Input("Vrefc",-54,36)
+    {
+    Type = Real
+    }
+   Output("gatea",54,-36)
+    {
+    Type = Real
+    }
+   Output("gateb",54,0)
+    {
+    Type = Real
+    }
+   Output("gatec",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,Vrefa)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,Vrefb)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,Vrefc)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,gatea)
+   Line(54,-36,39,-36)
+   Pen(,,,gateb)
+   Line(54,0,39,0)
+   Pen(,,,gatec)
+   Line(54,36,39,36)
+   Text(0,6,"SVPWM")
+   Text(-24,-35,"Vrefa")
+   Text(-24,-6,"Vrefb")
+   Text(-24,39,"Vrefc")
+   Text(23,-33,"gatea")
+   Text(23,-6,"gateb")
+   Text(23,39,"gatec")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL SVPWM_3(DELT, $Vrefa, $Vrefb, $Vrefc, $gatea, $gateb, $gatec)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("TriangularPWM")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("VrefA",-54,-90)
+    {
+    Type = Real
+    }
+   Input("VrefB",-54,-54)
+    {
+    Type = Real
+    }
+   Input("VrefC",-54,-18)
+    {
+    Type = Real
+    }
+   Input("Vtriag",-54,54)
+    {
+    Type = Real
+    }
+   Output("G1",54,-90)
+    {
+    Type = Real
+    }
+   Output("G2",54,-54)
+    {
+    Type = Real
+    }
+   Output("G3",54,-18)
+    {
+    Type = Real
+    }
+   Output("G4",54,18)
+    {
+    Type = Real
+    }
+   Output("G5",54,54)
+    {
+    Type = Real
+    }
+   Output("G6",54,90)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-111,39,111)
+   Pen(ByNode,ByNode,ByNode,VrefA)
+   Line(-54,-90,-39,-90)
+   Pen(,Solid)
+   Line(-39,-90,-44,-95)
+   Line(-39,-90,-44,-85)
+   Pen(,ByNode,,VrefB)
+   Line(-54,-54,-39,-54)
+   Pen(,Solid)
+   Line(-39,-54,-44,-59)
+   Line(-39,-54,-44,-49)
+   Pen(,ByNode,,VrefC)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,Vtriag)
+   Line(-54,54,-39,54)
+   Pen(,Solid)
+   Line(-39,54,-44,49)
+   Line(-39,54,-44,59)
+   Pen(,ByNode,,G1)
+   Line(54,-90,39,-90)
+   Pen(,,,G2)
+   Line(54,-54,39,-54)
+   Pen(,,,G3)
+   Line(54,-18,39,-18)
+   Pen(,,,G4)
+   Line(54,18,39,18)
+   Pen(,,,G5)
+   Line(54,54,39,54)
+   Pen(,,,G6)
+   Line(54,90,39,90)
+   Text(1,40,"Triangular")
+   Text(1,4,"PWM")
+   Text(-24,-88,"VrefA")
+   Text(-24,-51,"VrefB")
+   Text(-23,-15,"VrefC")
+   Text(-23,58,"Vtriag")
+   Text(30,-86,"G1")
+   Text(30,-51,"G2")
+   Text(30,-15,"G3")
+   Text(30,21,"G4")
+   Text(30,58,"G5")
+   Text(30,93,"G6")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+	IF ($VrefA>$Vtriag) THEN
+	  $G1 = 1
+	  $G4 = 0
+	END IF
+
+	IF ($VrefA<$Vtriag) THEN
+	  $G1 = 0
+	  $G4 = 1
+	END IF
+
+	IF ($VrefB>$Vtriag) THEN
+	  $G2 = 1
+	  $G5 = 0
+	END IF
+
+	IF ($VrefB<$Vtriag) THEN
+	  $G2 = 0
+	  $G5 = 1
+	END IF
+
+	IF ($VrefC>$Vtriag) THEN
+	  $G3 = 1
+	  $G6 = 0
+	END IF
+
+	IF ($VrefC<$Vtriag) THEN
+	  $G3 = 0
+	  $G6 = 1
+	END IF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("dispTiristor")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("ang",-54,-36)
+    {
+    Type = Real
+    }
+   Input("triang",-54,36)
+    {
+    Type = Real
+    }
+   Output("g1",54,-90)
+    {
+    Type = Real
+    }
+   Output("g2",54,-54)
+    {
+    Type = Real
+    }
+   Output("g3",54,-18)
+    {
+    Type = Real
+    }
+   Output("g4",54,18)
+    {
+    Type = Real
+    }
+   Output("g5",54,54)
+    {
+    Type = Real
+    }
+   Output("g6",54,90)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-111,39,111)
+   Pen(ByNode,ByNode,ByNode,ang)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,g1)
+   Line(54,-90,39,-90)
+   Pen(,,,g2)
+   Line(54,-54,39,-54)
+   Pen(,,,g3)
+   Line(54,-18,39,-18)
+   Pen(,,,g4)
+   Line(54,18,39,18)
+   Pen(,,,g5)
+   Line(54,54,39,54)
+   Pen(,,,g6)
+   Line(54,90,39,90)
+   Text(-2,-17,"disp")
+   Text(-2,9,"Tiristor")
+   Text(-28,-33,"ang")
+   Text(-23,38,"triang")
+   Text(32,-87,"g1")
+   Text(31,-50,"g2")
+   Text(31,-14,"g3")
+   Text(32,21,"g4")
+   Text(31,58,"g5")
+   Text(30,93,"g6")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL thyristor(DELT, $triang, $ang, $g1, $g2, $g3, $g4, $g5, $g6)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("ControleVF")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("fref",-54,0)
+    {
+    Type = Real
+    }
+   Output("Van",54,-36)
+    {
+    Type = Real
+    }
+   Output("Vbn",54,0)
+    {
+    Type = Real
+    }
+   Output("Vcn",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,fref)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,Van)
+   Line(54,-36,39,-36)
+   Pen(,,,Vbn)
+   Line(54,0,39,0)
+   Pen(,,,Vcn)
+   Line(54,36,39,36)
+   Text(0,-22,"Controle")
+   Text(0,6,"V/f")
+   Text(-30,-4,"fref")
+   Text(26,-39,"Van")
+   Text(28,-4,"Vbn")
+   Text(27,32,"Vcn")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "      CALL SCALAR_VF(DELT, $fref, $Van, $Vbn, $Vcn)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("ControleVFwref")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Wref",-54,-18)
+    {
+    Type = Real
+    }
+   Input("Wmed",-54,18)
+    {
+    Type = Real
+    }
+   Output("Van",54,-36)
+    {
+    Type = Real
+    }
+   Output("Vbn",54,0)
+    {
+    Type = Real
+    }
+   Output("Vcn",54,36)
+    {
+    Type = Real
+    }
+   Output("debug",-36,72)
+    {
+    Type = Real
+    }
+   Output("erro",0,72)
+    {
+    Type = Real
+    }
+   Output("acaoControle",36,72)
+    {
+    Type = Real
+    }
+   Output("intErro",-54,54)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,Wref)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,Wmed)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,Van)
+   Line(54,-36,39,-36)
+   Pen(,,,Vbn)
+   Line(54,0,39,0)
+   Pen(,,,Vcn)
+   Line(54,36,39,36)
+   Pen(Black,Solid,0.2)
+   Line(-37,56,-37,72)
+   Line(-1,56,-1,72)
+   Line(35,56,35,72)
+   Line(-38,54,-55,54)
+   Text(0,-24,"Controle")
+   Text(0,11,"V/f")
+   Text(-26,-8,"Wref")
+   Text(-22,29,"Wmed")
+   Text(28,-39,"Van")
+   Text(27,-3,"Vbn")
+   Text(28,33,"Vcn")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "      CALL SCALAR_VFW(DELT, $Wref, $Wmed, $Van, $Vbn, $Vcn, $debug,$erro)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("abtoabc")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("xa",-54,-18)
+    {
+    Type = Real
+    }
+   Input("xb",-54,18)
+    {
+    Type = Real
+    }
+   Output("xao",54,-36)
+    {
+    Type = Real
+    }
+   Output("xbo",54,0)
+    {
+    Type = Real
+    }
+   Output("xco",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,xa)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,xb)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,xao)
+   Line(54,-36,39,-36)
+   Pen(,,,xbo)
+   Line(54,0,39,0)
+   Pen(,,,xco)
+   Line(54,36,39,36)
+   Text(0,-22,"ab")
+   Text(0,6,"to")
+   Text(0,34,"abc")
+   Text(-32,-15,"xa")
+   Text(-33,23,"xb")
+   Text(28,-32,"xao")
+   Text(28,3,"xbo")
+   Text(29,39,"xco")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!	0 = Va + Vb + Vc
+
+	$xao = $xa
+	$xbo = $xb
+	$xco = - ($xa + $xb)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("controlcarlos")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Isa",-90,-36)
+    {
+    Type = Real
+    }
+   Input("Isb",-90,0)
+    {
+    Type = Real
+    }
+   Output("Van",54,-36)
+    {
+    Type = Real
+    }
+   Output("Vbn",54,0)
+    {
+    Type = Real
+    }
+   Output("Vcn",54,36)
+    {
+    Type = Real
+    }
+   Input("Wref",-54,72)
+    {
+    Type = Real
+    }
+   Input("Wmed",-18,72)
+    {
+    Type = Real
+    }
+   Output("debug",-18,-72)
+    {
+    Type = Real
+    Dim  = [5]
+    }
+   Output("Wrampa",18,72)
+    {
+    Type = Real
+    }
+   Input("Isc",-90,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-74,-57,38,57)
+   Pen(ByNode,ByNode,ByNode,Isa)
+   Line(-90,-36,-75,-36)
+   Pen(,Solid)
+   Line(-75,-36,-80,-41)
+   Line(-75,-36,-80,-31)
+   Pen(,ByNode,,Isb)
+   Line(-90,0,-75,0)
+   Pen(,Solid)
+   Line(-75,0,-80,-5)
+   Line(-75,0,-80,5)
+   Pen(,ByNode,,Van)
+   Line(54,-36,39,-36)
+   Pen(,,,Vbn)
+   Line(54,0,39,0)
+   Pen(,,,Vcn)
+   Line(54,36,39,36)
+   Pen(,,,Wmed)
+   Line(-18,72,-18,57)
+   Pen(,Solid)
+   Line(-18,57,-23,62)
+   Line(-18,57,-13,62)
+   Pen(Green,,0.2)
+   Line(-18,-57,-18,-72)
+   Pen(ByNode,ByNode,ByNode,Isb)
+   Line(-54,72,-54,57)
+   Pen(,Solid)
+   Line(-54,57,-59,62)
+   Line(-54,57,-49,62)
+   Pen(,ByNode,,Wmed)
+   Line(18,72,18,57)
+   Pen(,,,Isb)
+   Line(-90,36,-75,36)
+   Pen(,Solid)
+   Line(-75,36,-80,31)
+   Line(-75,36,-80,41)
+   Text(-17,-8,"Controle")
+   Text(-15,17,"Vetorial")
+   Text(-65,-35,"Isa")
+   Text(-65,2,"Isb")
+   Text(27,-32,"Van")
+   Text(27,4,"Vbn")
+   Text(27,40,"Vcn")
+   Text(-55,53,"Wref")
+   Text(-18,53,"Wmed")
+   Text(-19,-47,"debug")
+   Text(26,53,"Wrampa")
+   Text(-65,36,"Isc")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL vectorcontrol(DELT, $Isa, $Isb, $Isc, $Wref, $Wmed, $Van, $Vbn, $Vcn, $Wrampa, $debug(1), $debug(2), $debug(3), $debug(4), $debug(5))"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("detsetor")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("fluxd",-54,-18)
+    {
+    Type = Real
+    }
+   Input("fluxq",-54,18)
+    {
+    Type = Real
+    }
+   Output("set",0,-54)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Pen(ByNode,ByNode,ByNode,fluxd)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,fluxq)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,set)
+   Line(0,-54,0,-39)
+   Text(0,-9,"Determinação")
+   Text(-2,15,"setor")
+   Text(-26,-22,"fluxd")
+   Text(-26,29,"fluxq")
+   Text(0,-28,"set")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!  tabela certa: 2 1 6 1 3 4 5 4
+
+	fluxql = $fluxd * 0.57735
+	IF ($fluxd>0) THEN
+	   IF ($fluxq>0) THEN
+		IF (ABS($fluxq)>ABS(fluxql)) THEN
+		   $set = 2
+		ELSE
+		   $set = 1
+		END IF
+	   ELSE
+		IF (ABS($fluxq)>ABS(fluxql)) THEN
+		   $set = 6
+		ELSE
+		   $set = 1
+		END IF
+	   END IF
+	ELSE
+	   IF ($fluxq>0) THEN
+		IF (ABS($fluxq)>ABS(fluxql)) THEN
+		   $set = 3
+		ELSE
+		   $set = 4
+		END IF
+	   ELSE
+		IF (ABS($fluxq)>ABS(fluxql)) THEN
+		   $set = 5
+		ELSE
+		   $set = 4
+		END IF
+	   END IF
+	END IF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("HCdtc2")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("band",0,-54)
+    {
+    Type = Real
+    }
+   Input("erro",-36,0)
+    {
+    Type = Real
+    }
+   Output("gat",36,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-26,-21,21,21)
+   Pen(ByNode,ByNode,ByNode,band)
+   Line(0,-54,0,-39)
+   Pen(,Solid)
+   Line(0,-39,-5,-44)
+   Line(0,-39,5,-44)
+   Pen(,ByNode)
+   Line(-36,0,-27,0)
+   Pen(,Solid)
+   Line(-27,0,-32,-5)
+   Line(-27,0,-32,5)
+   Pen(,ByNode,,gat)
+   Line(36,0,21,0)
+   Pen(Red,Solid,0.2)
+   Line(-18,6,7,6)
+   Line(-6,-7,19,-7)
+   Line(8,6,8,-7)
+   Line(-6,6,-6,-7)
+   Text(-2,-11,"band")
+   Text(-15,15,"erro")
+   Text(13,16,"gat")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+! Bamda de Histerese de 2 niveis
+
+	IF (($band/2) <= $erro) THEN
+	  $gat = 1
+	END IF
+
+	IF ((-$band/2) > $erro) THEN
+	  $gat = 0
+	END IF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("HCdtc3")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("band",0,-54)
+    {
+    Type = Real
+    }
+   Input("erro",-54,0)
+    {
+    Type = Real
+    }
+   Output("gat",54,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Pen(ByNode,ByNode,ByNode,band)
+   Line(0,-54,0,-39)
+   Pen(,Solid)
+   Line(0,-39,-5,-44)
+   Line(0,-39,5,-44)
+   Pen(,ByNode)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,gat)
+   Line(54,0,39,0)
+   Text(0,-13,"HC")
+   Text(0,6,"DTC-3")
+   Text(0,-28,"band")
+   Text(-31,4,"erro")
+   Text(30,6,"gat")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+! Bamda de Histerese de 3 niveis
+
+	IF (($band/2) < $erro) THEN
+	  $gat = 1
+	END IF
+
+	IF ((-$band/2) > $erro) THEN
+	  $gat = -1
+	END IF
+
+	IF ((0 <= $erro) .AND. (($band/2) >= $erro)) THEN
+	  $gat = 0
+	END IF
+
+	IF ((0 >= $erro) .AND. ((-$band/2) <= $erro)) THEN
+	  $gat = 0
+	END IF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("ChavemDTC")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("errF",-54,-18)
+    {
+    Type = Real
+    }
+   Input("errT",-54,18)
+    {
+    Type = Real
+    }
+   Output("gata",54,-36)
+    {
+    Type = Real
+    }
+   Output("gatb",54,0)
+    {
+    Type = Real
+    }
+   Output("gatc",54,36)
+    {
+    Type = Real
+    }
+   Input("set",0,72)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,errF)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,errT)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,gata)
+   Line(54,-36,39,-36)
+   Pen(,,,gatb)
+   Line(54,0,39,0)
+   Pen(,,,gatc)
+   Line(54,36,39,36)
+   Pen(,,,set)
+   Line(0,72,0,57)
+   Pen(,Solid)
+   Line(0,57,-5,62)
+   Line(0,57,5,62)
+   Text(0,-14,"Chaveamento")
+   Text(0,23,"DTC")
+   Text(-28,-28,"errF")
+   Text(-28,34,"errT")
+   Text(26,-38,"gata")
+   Text(25,-3,"gatb")
+   Text(26,32,"gatc")
+   Text(0,53,"set")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL chavdtc(DELT, $errF, $errT, $set, $gata, $gatb, $gatc) "
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("SVPWM1")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Vref1",-54,-36)
+    {
+    Type = Real
+    }
+   Input("Vref2",-54,0)
+    {
+    Type = Real
+    }
+   Input("Vref3",-54,36)
+    {
+    Type = Real
+    }
+   Output("gat1",54,-36)
+    {
+    Type = Real
+    }
+   Output("gat2",54,0)
+    {
+    Type = Real
+    }
+   Output("gat3",54,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,Vref1)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,Vref2)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,Vref3)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,gat1)
+   Line(54,-36,39,-36)
+   Pen(,,,gat2)
+   Line(54,0,39,0)
+   Pen(,,,gat3)
+   Line(54,36,39,36)
+   Text(1,-19,"SVPWM")
+   Text(0,15,"01")
+   Text(-23,-39,"Vref1")
+   Text(-23,-3,"Vref2")
+   Text(-23,33,"Vref3")
+   Text(26,-39,"gat1")
+   Text(26,-3,"gat2")
+   Text(26,33,"gat3")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "       CALL SVPWM_31(DELT, $Vref1, $Vref2, $Vref3, $gat1, $gat2, $gat3)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("ControlREDE")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Vabc",-54,-36)
+    {
+    Type = Real
+    Dim  = [3]
+    }
+   Input("Vcc",-54,0)
+    {
+    Type = Real
+    }
+   Input("Iabc",-54,36)
+    {
+    Type = Real
+    Dim  = [3]
+    }
+   Output("Van_ref",54,-36)
+    {
+    Type = Real
+    }
+   Output("Vbn_ref",54,0)
+    {
+    Type = Real
+    }
+   Output("Vcn_ref",54,36)
+    {
+    Type = Real
+    }
+   Output("debug",0,72)
+    {
+    Type = Real
+    Dim  = [3]
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,Vabc)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode,,Vcc)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,Iabc)
+   Line(-54,36,-39,36)
+   Pen(,Solid)
+   Line(-39,36,-44,31)
+   Line(-39,36,-44,41)
+   Pen(,ByNode,,Van_ref)
+   Line(54,-36,39,-36)
+   Pen(,,,Vbn_ref)
+   Line(54,0,39,0)
+   Pen(,,,Vcn_ref)
+   Line(54,36,39,36)
+   Pen(,,,debug)
+   Line(0,72,0,57)
+   Text(-1,-19,"Controle")
+   Text(0,14,"Rede")
+   Text(-24,-40,"Vabc")
+   Text(-28,-4,"Vcc")
+   Text(-27,32,"Iabc")
+   Text(17,-39,"Van_ref")
+   Text(17,-3,"Vbn_ref")
+   Text(17,33,"Vcn_ref")
+   Text(0,53,"debug")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL controlrede(DELT, $Vabc(1), $Vabc(2), $Vabc(3), $Vcc, $Iabc(1), $Iabc(2), $Iabc(3), $Van_ref, $Vbn_ref, $Vcn_ref, $debug(1), $debug(2), $debug(3))  "
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("CalculoPQ")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Output("P",-18,-54)
+    {
+    Type = Real
+    }
+   Output("Q",18,-54)
+    {
+    Type = Real
+    }
+   Input("V",54,-18)
+    {
+    Type = Real
+    Dim  = [3]
+    }
+   Input("I",54,18)
+    {
+    Type = Real
+    Dim  = [3]
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Pen(ByNode,ByNode,ByNode,P)
+   Line(-18,-54,-18,-39)
+   Pen(,,,Q)
+   Line(18,-54,18,-39)
+   Pen(,,,V)
+   Line(54,-18,39,-18)
+   Pen(,Solid)
+   Line(39,-18,44,-23)
+   Line(39,-18,44,-13)
+   Pen(,ByNode,,I)
+   Line(54,18,39,18)
+   Pen(,Solid)
+   Line(39,18,44,13)
+   Line(39,18,44,23)
+   Text(2,19,"P Q")
+   Text(-19,-28,"P")
+   Text(18,-28,"Q")
+   Text(34,-14,"V")
+   Text(36,23,"I")
+   Text(0,-4,"Cálculo")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+!	ABC TO DQ
+
+	ID = ($I(1) * sin(0) + $I(2) * sin(- PI2_BY3) + $I(3) * sin(PI2_BY3))* sqrt(2./3.)
+	IQ = ($I(1) * cos(0) + $I(2) * cos(- PI2_BY3) + $I(3) * cos(PI2_BY3))* sqrt(2./3.)
+
+	VD = ($V(1) * sin(0) + $V(2) * sin(- PI2_BY3) + $V(3) * sin(PI2_BY3))* sqrt(2./3.)
+	VQ = ($V(1) * cos(0) + $V(2) * cos(- PI2_BY3) + $V(3) * cos(PI2_BY3))* sqrt(2./3.)
+
+	$P = VD * ID + VQ * IQ
+	$Q = VQ * ID - VD * IQ"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("morma")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("Normalizacao de dados")
+    {
+    Choice("norm",5,10,85,44,2)
+     {
+     Style = 1
+     Desc = "Normalizar"
+     Def = "0"
+     Len = 15
+     *0 = "Direta"
+     *1 = "Reversa"
+     }
+    Input("xmax",103,20,98,12,2)
+     {
+     Desc = "Maximo"
+     Def = "1"
+     Data = Real
+     Len = 15
+     }
+    Input("xmin",104,36,98,12,2)
+     {
+     Desc = "Minimo"
+     Def = "-1"
+     Data = Real
+     Len = 15
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("in",-54,0)
+    {
+    Type = Real
+    }
+   Output("out",36,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-23,21,22)
+   Pen(ByNode,ByNode,ByNode,in)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,out)
+   Line(36,0,21,0)
+   Text(-9,-7,"Normalizar")
+   Text(-34,11,"in")
+   Text(11,11,"out")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+
+	#IF norm == 0
+		$out = (2 *($in - $xmin))/($xmax - $xmin) -1
+	#ELSE
+		$out = (($xmax - $xmin)*($in + 1))/2 + $xmin
+	#ENDIF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("REDEneural")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("vd",-54,-36)
+    {
+    Type = Real
+    }
+   Input("f",-18,-72)
+    {
+    Type = Real
+    }
+   Output("wrest",0,54)
+    {
+    Type = Real
+    }
+   Input("id",54,-36)
+    {
+    Type = Real
+    }
+   Input("iq",54,-18)
+    {
+    Type = Real
+    }
+   Input("vq",-54,-18)
+    {
+    Type = Real
+    }
+   Input("f_1",18,-72)
+    {
+    Type = Real
+    }
+   Input("vd_1",-54,0)
+    {
+    Type = Real
+    }
+   Input("vq_1",-54,18)
+    {
+    Type = Real
+    }
+   Input("id_1",54,0)
+    {
+    Type = Real
+    }
+   Input("iq_1",54,18)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-42,-58,38,37)
+   Pen(ByNode,ByNode,ByNode,vd)
+   Line(-54,-36,-39,-36)
+   Pen(,Solid)
+   Line(-39,-36,-44,-41)
+   Line(-39,-36,-44,-31)
+   Pen(,ByNode)
+   Line(-18,-72,-18,-57)
+   Pen(,Solid)
+   Line(-18,-57,-13,-62)
+   Line(-18,-57,-23,-62)
+   Pen(,ByNode,,wrest)
+   Line(0,55,0,34)
+   Pen(,,,id)
+   Line(54,-36,39,-36)
+   Pen(,Solid)
+   Line(39,-36,44,-31)
+   Line(39,-36,44,-41)
+   Pen(,ByNode,,iq)
+   Line(54,-18,39,-18)
+   Pen(,Solid)
+   Line(39,-18,44,-13)
+   Line(39,-18,44,-23)
+   Pen(,ByNode,,vd)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode)
+   Line(18,-72,18,-57)
+   Pen(,Solid)
+   Line(18,-57,23,-62)
+   Line(18,-57,13,-62)
+   Pen(,ByNode)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode,,id)
+   Line(54,0,39,0)
+   Pen(,Solid)
+   Line(39,0,44,5)
+   Line(39,0,44,-5)
+   Pen(,ByNode,,iq)
+   Line(54,18,39,18)
+   Pen(,Solid)
+   Line(39,18,44,23)
+   Line(39,18,44,13)
+   Text(-1,-25,"Rede")
+   Text(2,-4,"Neural")
+   Text(-31,-32,"vd")
+   Text(-18,-47,"fr")
+   Text(2,37,"wrest")
+   Text(32,-34,"id")
+   Text(31,-15,"iq")
+   Text(-32,-15,"vq")
+   Text(19,-46,"fr_1")
+   Text(-31,4,"vd_1")
+   Text(-32,21,"vq_1")
+   Text(32,2,"id_1")
+   Text(31,21,"iq_1")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL reden($iq, $iq_1, $vd_1, $vd, $id_1, $id, $wrest)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("CargaLinear")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("CtlPanel")
+    {
+    Input("k",3,17,160,12,2)
+     {
+     Desc = "Constante de Carga (K)"
+     Def = "1.47"
+     Data = Real
+     Len = 15
+     }
+    Input("A",4,28,160,12,2)
+     {
+     Desc = "Relacao (Tl/Wr)"
+     Def = "0.1"
+     Data = Real
+     Len = 15
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("Wr",54,0)
+    {
+    Type = Real
+    }
+   Output("Tl",0,36)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-38,-17,39,20)
+   Pen(ByNode,ByNode,ByNode,Wr)
+   Line(54,0,39,0)
+   Pen(,Solid)
+   Line(39,0,44,-5)
+   Line(39,0,44,5)
+   Pen(,ByNode,,Tl)
+   Line(0,36,0,21)
+   Text(-18,-2,"Carga")
+   Text(15,12,"Linear")
+   Text(30,-2,"Wr")
+   Text(-10,16,"Tl")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	$Tl = $k + $A*$Wr"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("cont_PI")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   Category("Controlador PI com Ant-Windup")
+    {
+    Input("Kp",4,4,160,12,2)
+     {
+     Desc = "Ganho Proporcional (Kp)"
+     Def = "10"
+     Data = Real
+     Len = 15
+     }
+    Input("Ki",4,16,160,12,2)
+     {
+     Desc = "Ganho integral (Ki)"
+     Def = "0.1"
+     Data = Real
+     Len = 15
+     }
+    Input("max",4,35,160,12,2)
+     {
+     Desc = "Limite Superior"
+     Def = "100"
+     Data = Real
+     Len = 15
+     }
+    Input("min",4,48,160,12,2)
+     {
+     Desc = "Limite Inferior"
+     Def = "-100"
+     Data = Real
+     Len = 15
+     }
+    }
+   }
+
+  Nodes = 
+   {
+   Input("In",-36,0)
+    {
+    Type = Real
+    }
+   Output("Ou",36,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-21,-17,21,16)
+   Pen(ByNode,ByNode,ByNode,In)
+   Line(-36,0,-21,0)
+   Pen(,Solid)
+   Line(-21,0,-26,-5)
+   Line(-21,0,-26,5)
+   Pen(,ByNode,,Ou)
+   Line(36,0,21,0)
+   Font(,Large)
+   Text(0,6,"PI")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+	#STORAGE REAL:1
+	#LOCAL REAL int_e
+
+	int_e = STORF(NSTORF) 
+
+	int_e = int_e + $In * DELT
+	$Ou = $Kp * $In + $Ki * int_e
+
+	IF ($Ou > $max) THEN
+	    $Ou = $max
+	    int_e = int_e - $In * DELT
+	END IF
+
+	IF ($Ou < $min) THEN
+	    $Ou = $min
+	    int_e = int_e - $In * DELT
+	END IF	
+	STORF(NSTORF) = int_e
+	NSTORF = NSTORF + 1"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Module("Untitled_1")
+  {
+  Desc = ""
+  FileDate = 0
+  Nodes = 
+   {
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Text(0,0,"$(Defn:Name)")
+   }
+
+
+  Page(A/A4,Landscape,16,[683,342],5)
+   {
+   }
+  }
+ Component("Filtro")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("in",-54,0)
+    {
+    Type = Real
+    }
+   Output("out",54,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Text(0,-13,"Filtro")
+   Pen(ByNode,ByNode,ByNode,in)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Text(-46,-4,"in")
+   Pen(,ByNode,,out)
+   Line(54,0,39,0)
+   Text(46,-4,"out")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL fbwh4hz($in, $out)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("vectorcontrol")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Output("Debug",0,-72)
+    {
+    Type = Real
+    Dim  = [2]
+    }
+   Input("Isa",-54,-18)
+    {
+    Type = Real
+    }
+   Input("Isb",-54,18)
+    {
+    Type = Real
+    }
+   Output("Van",54,-36)
+    {
+    Type = Real
+    }
+   Input("Vbn",54,0)
+    {
+    Type = Real
+    }
+   Input("Vcn",54,36)
+    {
+    Type = Real
+    }
+   Input("Wref",-18,72)
+    {
+    Type = Real
+    }
+   Input("Wmed",18,72)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-57,39,57)
+   Pen(ByNode,ByNode,ByNode,Debug)
+   Line(0,-72,0,-57)
+   Pen(,,,Isa)
+   Line(-54,-18,-39,-18)
+   Pen(,Solid)
+   Line(-39,-18,-44,-23)
+   Line(-39,-18,-44,-13)
+   Pen(,ByNode,,Isb)
+   Line(-54,18,-39,18)
+   Pen(,Solid)
+   Line(-39,18,-44,13)
+   Line(-39,18,-44,23)
+   Pen(,ByNode)
+   Line(54,-36,39,-36)
+   Line(54,0,39,0)
+   Pen(,Solid)
+   Line(39,0,44,-5)
+   Line(39,0,44,5)
+   Pen(,ByNode)
+   Line(54,36,39,36)
+   Pen(,Solid)
+   Line(39,36,44,31)
+   Line(39,36,44,41)
+   Pen(,ByNode,,Wref)
+   Line(-18,72,-18,57)
+   Pen(,Solid)
+   Line(-18,57,-23,62)
+   Line(-18,57,-13,62)
+   Pen(,ByNode)
+   Line(18,72,18,57)
+   Pen(,Solid)
+   Line(18,57,13,62)
+   Line(18,57,23,62)
+   Text(0,-9,"Controle")
+   Text(0,16,"Vetorial")
+   Text(1,-46,"Debug")
+   Text(-30,-15,"Isa")
+   Text(-29,22,"Isb")
+   Text(27,-32,"Van")
+   Text(27,4,"Vbn")
+   Text(27,40,"Vcn")
+   Text(-22,53,"Wref")
+   Text(19,52,"Wmed")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL vectorcontrol(DELT, $Isa, $Isb, $Wref, $Wmed, $Van, $Vbn, $Vcn, $debug(1), $debug(2))"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Module("Untitled_2")
+  {
+  Desc = ""
+  FileDate = 0
+  Nodes = 
+   {
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Text(0,0,"$(Defn:Name)")
+   }
+
+
+  Page(A/A4,Landscape,16,[683,342],5)
+   {
+   }
+  }
+ Component("VelociadeRef")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Output("w",54,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-39,39,39)
+   Text(0,-13,"Vref")
+   Pen(ByNode,ByNode,ByNode,w)
+   Line(54,0,39,0)
+   Text(46,-4,"w")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+	#IF $TIME <= 1.0
+		$w = 8
+	#ELSEIF $TIME <= 0.5
+		$w = 2
+	#ENDIF "
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("velocidade_ref")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Time",-54,0)
+    {
+    Type = Real
+    }
+   Output("w",54,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-21,38,14)
+   Pen(ByNode,ByNode,ByNode,Time)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,w)
+   Line(54,0,39,0)
+   Text(0,0,"Wref Treino")
+   Text(-51,-5,"Time")
+   Text(46,-4,"w")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+	IF ($Time >= 8.0) THEN
+		$w = 184.0
+	ELSE IF ($Time >= 7.0) THEN
+		$w = -184.0
+	ELSE IF ($Time >= 6.5) THEN
+		$w = 10.0
+	ELSE IF ($Time >= 6.0) THEN
+		$w = -20.0
+	ELSE IF ($Time >= 5.5) THEN
+		$w = 50.0
+	ELSE IF ($Time >= 5.0) THEN 
+		$w = 120.0
+	ELSE IF ($Time >= 4.5) THEN 
+		$w = -50.0
+	ELSE IF ($Time >= 4.0) THEN
+		$w = 20.0
+	ELSE IF ($Time >= 3.5) THEN 
+		$w = 170.0
+	ELSE IF ($Time >= 3.0) THEN 
+		$w = 90.0
+	ELSE IF ($Time >= 2.5) THEN
+		$w = 184
+	ELSE IF ($Time >= 2.0) THEN
+		$w = 90
+	ELSE IF ($Time >= 1.5) THEN 
+		$w = -90.0
+	ELSE IF ($Time >= 1.0) THEN 
+		$w = 50.0
+	ELSE IF ($Time >= 0.5) THEN 
+		$w = 20.0
+	ELSE
+		$w = 150.0
+	END IF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("Wref_teste")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("Time",-54,0)
+    {
+    Type = Real
+    }
+   Output("w",54,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-38,-22,36,12)
+   Pen(ByNode,ByNode,ByNode,Time)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,0.2)
+   Line(36,0,54,0)
+   Text(-1,-3,"Wref Teste")
+   Text(-51,-5,"Time")
+   Text(53,-5,"w")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+	IF ($Time >= 20.0) THEN
+		$w = 180.0
+	ELSE IF ($Time >= 19.5) THEN
+		$w = 126.0
+	ELSE IF ($Time >= 18.5) THEN
+		$w = -195.0
+	ELSE IF ($Time >= 17.5) THEN
+		$w = -195.0
+	ELSE IF ($Time >= 17.0) THEN
+		$w = 186.0
+	ELSE IF ($Time >= 16.5) THEN
+		$w = 186.0
+	ELSE IF ($Time >= 16.0) THEN
+		$w = 165.0
+	ELSE IF ($Time >= 15.5) THEN
+		$w = 10.0
+	ELSE IF ($Time >= 15.0) THEN
+		$w = -10.0
+	ELSE IF ($Time >= 14.5) THEN
+		$w = -125.0
+	ELSE IF ($Time >= 14.0) THEN
+		$w = -145.0
+	ELSE IF ($Time >= 13.5) THEN
+		$w = -185.0
+	ELSE IF ($Time >= 13.0) THEN
+		$w = -185.0
+	ELSE IF ($Time >= 12.5) THEN
+		$w = 30.0
+	ELSE IF ($Time >= 12.0) THEN
+		$w = 185.0
+	ELSE IF ($Time >= 11.5) THEN
+		$w = -185.0
+	ELSE IF ($Time >= 11.0) THEN
+		$w = 120.0
+	ELSE IF ($Time >= 10.5) THEN
+		$w = 160.0
+	ELSE IF ($Time >= 10.0) THEN
+		$w = 195.0
+	ELSE IF ($Time >= 9.5) THEN
+		$w = 180.0
+	ELSE IF ($Time >= 9.0) THEN
+		$w = 190.0
+	ELSE IF ($Time >= 8.0) THEN
+		$w = 32.0
+	ELSE IF ($Time >= 7.5) THEN
+		$w = 92.0
+	ELSE IF ($Time >= 7.0) THEN 
+		$w = 128.0
+	ELSE IF ($Time >= 6.5) THEN
+		$w = 64.0
+	ELSE IF ($Time >= 6.0) THEN
+		$w = 154.0
+	ELSE IF ($Time >= 5.0) THEN 
+		$w = 4.0
+	ELSE IF ($Time >= 4.5) THEN 
+		$w = 95.0
+	ELSE IF ($Time >= 4.0) THEN
+		$w = 16.0
+	ELSE IF ($Time >= 3.5) THEN
+		$w = 116.0
+	ELSE IF ($Time >= 3.0) THEN 
+		$w = 82.0
+	ELSE IF ($Time >= 2.5) THEN 
+		$w = 142.0
+	ELSE IF ($Time >= 2.0) THEN
+		$w = 186
+	ELSE IF ($Time >= 1.5) THEN
+		$w = 70
+	ELSE IF ($Time >= 1.0) THEN 
+		$w = 90.0
+	ELSE IF ($Time >= 0.5) THEN 
+		$w = 100.0
+	ELSE IF ($Time >= 0.25) THEN 
+		$w = 50.0
+	ELSE
+		$w = 50.0
+	END IF"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("Media_Movel")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("in",-54,0)
+    {
+    Type = Real
+    }
+   Output("out",54,0)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-39,-21,38,10)
+   Pen(ByNode,ByNode,ByNode,in)
+   Line(-54,0,-39,0)
+   Pen(,Solid)
+   Line(-39,0,-44,-5)
+   Line(-39,0,-44,5)
+   Pen(,ByNode,,out)
+   Line(54,0,39,0)
+   Text(0,-3,"Media Movel")
+   Text(-46,-4,"in")
+   Text(46,-4,"out")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "	CALL media($in,$out)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Component("RNA_ATRASO")
+  {
+  Desc = ""
+  FileDate = 0
+  Parameters = 
+   {
+   }
+
+  Nodes = 
+   {
+   Input("vd",-54,-90)
+    {
+    Type = Real
+    }
+   Input("vd1",-18,-90)
+    {
+    Type = Real
+    }
+   Input("vd2",18,-90)
+    {
+    Type = Real
+    }
+   Input("vd3",54,-90)
+    {
+    Type = Real
+    }
+   Input("id",-90,-54)
+    {
+    Type = Real
+    }
+   Input("id1",-90,-18)
+    {
+    Type = Real
+    }
+   Input("id2",-90,18)
+    {
+    Type = Real
+    }
+   Input("id3",-90,54)
+    {
+    Type = Real
+    }
+   Input("iq",90,-54)
+    {
+    Type = Real
+    }
+   Input("iq1",90,-18)
+    {
+    Type = Real
+    }
+   Input("iq2",90,18)
+    {
+    Type = Real
+    }
+   Input("iq3",90,54)
+    {
+    Type = Real
+    }
+   Output("w",0,90)
+    {
+    Type = Real
+    }
+   }
+
+  Graphics = 
+   {
+   Rectangle(-75,-75,75,75)
+   Text(0,-31,"RNA")
+   Text(0,6,"ATRASO")
+   Pen(ByNode,ByNode,ByNode,vd)
+   Line(-54,-90,-54,-75)
+   Pen(,Solid)
+   Line(-54,-75,-59,-80)
+   Line(-54,-75,-49,-80)
+   Text(-44,-78,"vd")
+   Pen(,ByNode,,vd1)
+   Line(-18,-90,-18,-75)
+   Pen(,Solid)
+   Line(-18,-75,-23,-80)
+   Line(-18,-75,-13,-80)
+   Text(-8,-78,"vd1")
+   Pen(,ByNode,,vd2)
+   Line(18,-90,18,-75)
+   Pen(,Solid)
+   Line(18,-75,13,-80)
+   Line(18,-75,23,-80)
+   Text(28,-78,"vd2")
+   Pen(,ByNode,,vd3)
+   Line(54,-90,54,-75)
+   Pen(,Solid)
+   Line(54,-75,49,-80)
+   Line(54,-75,59,-80)
+   Text(64,-78,"vd3")
+   Pen(,ByNode,,id)
+   Line(-90,-54,-75,-54)
+   Pen(,Solid)
+   Line(-75,-54,-80,-59)
+   Line(-75,-54,-80,-49)
+   Text(-82,-58,"id")
+   Pen(,ByNode,,id1)
+   Line(-90,-18,-75,-18)
+   Pen(,Solid)
+   Line(-75,-18,-80,-23)
+   Line(-75,-18,-80,-13)
+   Text(-82,-22,"id1")
+   Pen(,ByNode,,id2)
+   Line(-90,18,-75,18)
+   Pen(,Solid)
+   Line(-75,18,-80,13)
+   Line(-75,18,-80,23)
+   Text(-82,14,"id2")
+   Pen(,ByNode,,id3)
+   Line(-90,54,-75,54)
+   Pen(,Solid)
+   Line(-75,54,-80,49)
+   Line(-75,54,-80,59)
+   Text(-82,50,"id3")
+   Pen(,ByNode,,iq)
+   Line(90,-54,75,-54)
+   Pen(,Solid)
+   Line(75,-54,80,-59)
+   Line(75,-54,80,-49)
+   Text(82,-58,"iq")
+   Pen(,ByNode,,iq1)
+   Line(90,-18,75,-18)
+   Pen(,Solid)
+   Line(75,-18,80,-23)
+   Line(75,-18,80,-13)
+   Text(82,-22,"iq1")
+   Pen(,ByNode,,iq2)
+   Line(90,18,75,18)
+   Pen(,Solid)
+   Line(75,18,80,13)
+   Line(75,18,80,23)
+   Text(82,14,"iq2")
+   Pen(,ByNode,,iq3)
+   Line(90,54,75,54)
+   Pen(,Solid)
+   Line(75,54,80,49)
+   Line(75,54,80,59)
+   Text(82,50,"iq3")
+   Pen(,ByNode,,w)
+   Line(0,90,0,75)
+   Text(10,86,"w")
+   }
+
+  Section(EMTDC)
+   {
+   Fortran = "\
+! 	----------------------------------------------------------------
+!	Basta retirar os comentários conforme a funcao desejada...
+!	----------------------------------------------------------------
+
+
+!	CALL reden($vd3, $vd2, $vd1, $vd, $iq3, $iq2, $iq1, $iq, $id3, $id2, $id1, $id, $w)
+	CALL reden($vd1, $vd, $iq1, $iq, $id1, $id, $w)
+!	CALL reden($vd, $iq, $id, $w)"
+   Branch = ""
+   Computations = ""
+   }
+  }
+ Module("Main")
+  {
+  Desc = ""
+  FileDate = 0
+  Nodes = 
+   {
+   }
+
+  Graphics = 
+   {
+   Rectangle(-18,-18,18,18)
+   }
+
+
+  Page(A/A4,Landscape,16,[683,342],5)
+   {
+   .ABCtoAlfBet([126,144],0,0,-1)
+    {
+    inv = "0"
+    }
+   .AflBettoABC([252,144],0,0,-1)
+    {
+    inv = "0"
+    }
+   .AlfBettoDQ([378,126],0,0,-1)
+    {
+    }
+   .DQtoAlfBet([504,126],0,0,-1)
+    {
+    }
+   .ABCtoDQ([648,144],0,0,-1)
+    {
+    inv = "0"
+    }
+   .DQtoABC([774,144],0,0,-1)
+    {
+    inv = "0"
+    }
+   -Sticky-([108,252],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 108,252,234,288
+    Alignment = 1
+    Style = 1
+    Arrow = 2
+    Color = 16711808,15792890
+    Text = "\
+Space Vector
+PWM"
+    }
+   -SrcFile-([126,450],0)
+    {
+   Name = "svpwm.C"
+    }
+   -Divider-([0,234],0)
+    {
+    Size(1494,0)
+    3D = 1
+    Color = 9
+    Style = 0
+    Weight = 2
+    }
+   -Sticky-([36,18],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 36,18,324,54
+    Alignment = 1
+    Style = 1
+    Arrow = 0
+    Color = 16711808,15792890
+    Text = "Clarke"
+    }
+   -Sticky-([378,18],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 378,18,486,54
+    Alignment = 1
+    Style = 1
+    Arrow = 192
+    Color = 16711808,15792890
+    Text = "Park"
+    }
+   -Sticky-([666,18],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 666,18,774,54
+    Alignment = 1
+    Style = 1
+    Arrow = 192
+    Color = 16711808,15792890
+    Text = "Krause"
+    }
+   .svpwm([162,378],0,0,-1)
+    {
+    }
+   -SrcFile-([792,468],0)
+    {
+   Name = "ControleVF.c"
+    }
+   .ControleVFwref([828,378],0,0,-1)
+    {
+    }
+   -Sticky-([774,252],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 774,252,882,288
+    Alignment = 1
+    Style = 1
+    Arrow = 2
+    Color = 16711808,15792890
+    Text = "\
+Controle
+Escalar"
+    }
+   -Divider-([0,648],0)
+    {
+    Size(1584,0)
+    3D = 1
+    Color = 9
+    Style = 0
+    Weight = 2
+    }
+   -Sticky-([162,558],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 162,558,270,594
+    Alignment = 1
+    Style = 1
+    Arrow = 4
+    Color = 16711808,15792890
+    Text = "Normalizador"
+    }
+   .morma([90,576],0,0,-1)
+    {
+    norm = "0"
+    xmax = "1"
+    xmin = "-1"
+    }
+   -Sticky-([936,252],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 936,252,1044,288
+    Alignment = 1
+    Style = 1
+    Arrow = 2
+    Color = 16711808,15792890
+    Text = "\
+Rede Neural
+W r"
+    }
+   .REDEneural([990,396],0,0,-1)
+    {
+    }
+   .CargaLinear([360,504],0,0,-1)
+    {
+    k = "0.5"
+    A = "300e-004"
+    }
+   -Sticky-([306,414],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 306,414,414,450
+    Alignment = 1
+    Style = 1
+    Arrow = 2
+    Color = 16711808,15792890
+    Text = "Carga Linear"
+    }
+   .Filtro([522,288],0,0,-1)
+    {
+    }
+   -SrcFile-([486,342],0)
+    {
+   Name = "filtroButterworth.c"
+    }
+   -Sticky-([612,252],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 612,252,720,288
+    Alignment = 1
+    Style = 1
+    Arrow = 2
+    Color = 16711808,15792890
+    Text = "\
+Controle
+Vetorial indireto"
+    }
+   -SrcFile-([630,468],0)
+    {
+   Name = "vectorcontrol.c"
+    }
+   .vectorcontrol([666,378],0,0,-1)
+    {
+    }
+   .velocidade_ref([522,522],0,0,-1)
+    {
+    }
+   .Wref_teste([522,450],0,0,-1)
+    {
+    }
+   .Media_Movel([360,288],0,0,-1)
+    {
+    }
+   -SrcFile-([324,324],0)
+    {
+   Name = "media_movel.c"
+    }
+   -Sticky-([1098,252],0)
+    {
+    Name = ""
+    Font = 1
+    Bounds = 1098,252,1278,288
+    Alignment = 1
+    Style = 1
+    Arrow = 2
+    Color = 16711808,15792890
+    Text = "Rede Neural para Testes Com Atraso"
+    }
+   -SrcFile-([936,486],0)
+    {
+   Name = ""
+    }
+   -SrcFile-([1170,504],0)
+    {
+   Name = ""
+    }
+   .RNA_ATRASO([1188,396],0,0,-1)
+    {
+    }
+   }
+  }
+ }
+
