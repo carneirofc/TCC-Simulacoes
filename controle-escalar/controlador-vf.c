@@ -1,6 +1,8 @@
 /**
  * Controle Escalar V/f
- * */ 
+ *  
+ */
+  
 #include <math.h>
 
 #define pi 3.14159265358979323846
@@ -27,7 +29,7 @@ double kpW_L = 9.0, kiW_L = 10.0; // 5.5, kiW_L = .02; kiW_L = 0.0001
 /**
  * Rampa de Aceleração
  * */
-double lim_rampa = 500, W_rampa_1 = 0, W_rampa = 0;
+double lim_rampa = 500, W_rampa_1 = 0, W_rampa = 0, Tax = 0;
 
 void dqToABC_ControleVF(double* d, double* q, double* a, double* b, double* c)
 {
@@ -39,7 +41,7 @@ void dqToABC_ControleVF(double* d, double* q, double* a, double* b, double* c)
 /**
  * Função de Integração
  * W->Teta
- * */
+ */
 void intreg(double* dt, double* xin, double* xout)
 {
     *xout = xout_ant + ((*xin + xin_ant) / 2.) * (*dt);
@@ -49,10 +51,9 @@ void intreg(double* dt, double* xin, double* xout)
     xin_ant = *xin;
 }
 
-//void scalar_vfw__(double *dt, double *W_ref, double *W_med, double *v1, double *v2, double *v3, double *wRefRampa,double *erro,double *acaoControle,double *intErr) {
-void scalar_vfw__(double* dt, double* W_ref, double* W_med, double* v1, double* v2, double* v3, double* wRefRampa)
-{
-    double e_W, W, vref, vd, vq, W_cont, kp, ki,Tax;
+ void scalar_vfw__(double* dt, double* W_ref, double* W_med, double* v1, double* v2, double* v3, double* wRefRampa){
+    double e_W, W, vref, vd, vq, W_cont, kp, ki ;
+
     // Verificando se está ou não em baixa rotação e escolhendo os parâmetros de controle adequados
     if (fabs(*W_ref) >= wBaixaRotacao) {
         kp = kpW;
@@ -64,17 +65,18 @@ void scalar_vfw__(double* dt, double* W_ref, double* W_med, double* v1, double* 
 
     // Rampa de Aceleração
     Tax = (*W_ref - W_rampa_1) / *dt;
-    if (Tax > lim_rampa)
+    if (Tax > lim_rampa) {
         W_rampa = *dt * lim_rampa + W_rampa_1;
-    if (Tax < -lim_rampa)
+    } else if (Tax < -lim_rampa) {
         W_rampa = *dt * (-lim_rampa) + W_rampa_1;
-    if ((Tax > lim_rampa) && (Tax < -lim_rampa))
-        W_rampa = *W_ref;
+    } else { 
+         W_rampa = *W_ref;
+    }
+   
     W_rampa_1 = W_rampa;
 
     // Controle Escalar
-    e_W = W_rampa - *W_med;
-    //*erro = e_W;
+    e_W = W_rampa - *W_med; 
     int_e_W += ((e_W + e_W_Ant) / 2) * *dt;
     e_W_Ant = e_W;
 
@@ -84,9 +86,9 @@ void scalar_vfw__(double* dt, double* W_ref, double* W_med, double* v1, double* 
 
     W_cont = kp * e_W + ki * int_e_W;
     W = W_cont + 2.0 * (*W_med);
-    // *acaoControle = W;
-    //  *intErr = int_e_W;
+    
     intreg(dt, &W, &teta);
+
     if (W >= 188.5) {
         vref = ((W * 376) / 377.);
         if (vref >= 376)
@@ -104,29 +106,4 @@ void scalar_vfw__(double* dt, double* W_ref, double* W_med, double* v1, double* 
     // Transformação de ABC para DQ
     dqToABC_ControleVF(&vd, &vq, v1, v2, v3);
     *wRefRampa = W_rampa;
-}
-
-void scalar_vf__(double* dt, double* f, double* v1, double* v2, double* v3)
-{
-    double w, vref, vd, vq;
-    w = 2. * pi * (*f);
-    intreg(dt, &w, &teta);
-    if (w >= 188.5) {
-        vref = ((w * 376) / 377.);
-        if (vref >= 376)
-            vref = 376;
-        if (vref <= -375.6)
-            vref = -376;
-    } else {
-        //vref = 188 + 0.84*(w - 188.5);
-        vref = (80 + ((w * 108) / 188.5));
-    }
-    vd = vref * cos(teta);
-    vq = vref * sin(teta);
-
-    //    dqToABC_ControleVF(v1, v2, v3, &vd, &vq);
-
-    *v1 = vd;
-    *v2 = -0.5 * vd + (sqrt(3) / 2.) * vq;
-    *v3 = -0.5 * vd - (sqrt(3) / 2.) * vq;
-}
+} 

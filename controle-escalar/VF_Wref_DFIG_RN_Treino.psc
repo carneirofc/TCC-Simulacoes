@@ -2,8 +2,8 @@ PSCAD 4.2.0
 
 Settings
  {
- Id = "1334175951.1519513960"
- Author = "rico.claud"
+ Id = "1334175951.1526853542"
+ Author = "rico.laisf"
  Desc = ""
  Arch = "windows"
  Options = 32
@@ -42,7 +42,7 @@ Definitions
  Module("Torque")
   {
   Desc = ""
-  FileDate = 1519507365
+  FileDate = 1526853390
   Nodes = 
    {
    Input("Corrente",-54,-18)
@@ -92,7 +92,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.import([36,18],0,0,10)
     {
@@ -402,7 +402,7 @@ Definitions
  Module("Correntes")
   {
   Desc = ""
-  FileDate = 1519507365
+  FileDate = 1526853390
   Nodes = 
    {
    Output("Corrente",54,0)
@@ -435,7 +435,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.datalabel([252,144],0,0,-1)
     {
@@ -810,7 +810,7 @@ Definitions
  Module("Fluxos")
   {
   Desc = ""
-  FileDate = 1519507365
+  FileDate = 1526853390
   Nodes = 
    {
    Input("Vspdq",-54,-18)
@@ -855,7 +855,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.datalabel([180,666],0,0,-1)
     {
@@ -1483,7 +1483,7 @@ Definitions
  Module("CDFIGmodel")
   {
   Desc = ""
-  FileDate = 1519507365
+  FileDate = 1526853390
   Nodes = 
    {
    Input("TL",0,-72)
@@ -1532,7 +1532,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.import([576,360],5,0,80)
     {
@@ -2036,7 +2036,7 @@ Definitions
  Module("Main")
   {
   Desc = ""
-  FileDate = 1519508453
+  FileDate = 0
   Nodes = 
    {
    }
@@ -2047,7 +2047,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(B/A3,Landscape,16,[683,342],5)
    {
    .CDFIGmodel([558,144],0,0,110)
     {
@@ -2717,8 +2717,8 @@ Torque nominal: 20.35 (Valor Calculado)
     Ph = ""
     hide1 = "1"
     hide2 = "1"
-    Pd = "4454"
-    Qd = "2890"
+    Pd = "4152"
+    Qd = "2954"
     Vd = ""
     }
    0.breakout([432,144],4,0,-1)
@@ -2895,7 +2895,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Theta"
     }
-   0.pgb([540,1026],0,177798256,260)
+   0.pgb([540,1026],0,83177128,260)
     {
     Name = "f"
     Group = ""
@@ -2934,7 +2934,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Vc"
     }
-   0.pgb([576,234],0,177792136,400)
+   0.pgb([576,234],0,83182432,400)
     {
     Name = "Wm"
     Group = ""
@@ -2946,7 +2946,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.pgb([774,306],0,177797848,40)
+   0.pgb([846,324],0,83183248,40)
     {
     Name = "Wref"
     Group = ""
@@ -2958,7 +2958,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.datalabel([774,306],0,0,-1)
+   0.datalabel([846,324],0,0,-1)
     {
     Name = "Wref"
     }
@@ -3014,7 +3014,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;108,0"
     }
-   0.pgb([504,648],1,177790504,330)
+   0.pgb([504,648],1,83178760,330)
     {
     Name = "Vd"
     Group = ""
@@ -3026,7 +3026,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.pgb([504,810],1,177795808,290)
+   0.pgb([504,810],1,83179576,290)
     {
     Name = "Id"
     Group = ""
@@ -3038,7 +3038,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.pgb([504,882],1,177790912,270)
+   0.pgb([504,882],1,83179984,270)
     {
     Name = "Iq"
     Group = ""
@@ -3050,12 +3050,12 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   -Plot-([522,378],0)
+   -Plot-([1656,108],0)
     {
     Title = "$(GROUP) : Graphs"
     Draw = 1
     Area = [0,0,486,270]
-    Posn = [522,378]
+    Posn = [1656,108]
     Icon = [-1,-1]
     Extents = 0,0,486,270
     XLabel = " "
@@ -3064,8 +3064,8 @@ Torque nominal: 20.35 (Valor Calculado)
      {
      Options = 137
      Units = ""
-     Curve(177790912,"Iq",0,,,)
-     Curve(177795808,"Id",0,,,)
+     Curve(83179984,"Iq",0,,,)
+     Curve(83179576,"Id",0,,,)
      }
     }
    -Sticky-([450,702],0)
@@ -3083,43 +3083,24 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;0,-18"
     }
-   -Plot-([1026,0],0)
-    {
-    Title = "Velocidade Mecânica"
-    Draw = 1
-    Area = [0,0,504,234]
-    Posn = [1026,0]
-    Icon = [1062,36]
-    Extents = 0,0,504,234
-    XLabel = "t [s]"
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,504,171],"Wm [RAD/S]")
-     {
-     Options = 101
-     Units = ""
-     Curve(177799072,"Wref rampa",0,,,)
-     Curve(177797848,"Wref",0,,,)
-     Curve(177792136,"Wm",0,,,)
-     }
-    }
-   -Plot-([1008,630],0)
+   -Plot-([1638,702],0)
     {
     Title = "$(GROUP) : Graphs"
     Draw = 1
     Area = [0,0,504,234]
-    Posn = [1008,630]
+    Posn = [1638,702]
     Icon = [-1,-1]
     Extents = 0,0,504,234
     XLabel = " "
     AutoPan = "false,75"
     Graph([0,0],[0,0,504,171],"y")
      {
-     Options = 171
+     Options = 139
      Units = ""
-     Curve(177798256,"f",0,,,)
+     Curve(83177128,"f",0,,,)
      }
     }
-   0.pgb([432,684],0,178257184,310)
+   0.pgb([432,684],0,83184064,310)
     {
     Name = "Vq"
     Group = ""
@@ -3131,15 +3112,15 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   1.velocidade_ref([720,306],0,0,30)
+   1.velocidade_ref([792,324],0,0,30)
     {
     }
-   -Plot-([1008,360],0)
+   -Plot-([1656,396],0)
     {
     Title = "$(GROUP) : Graphs"
     Draw = 1
     Area = [0,0,504,270]
-    Posn = [1008,360]
+    Posn = [1656,396]
     Icon = [-1,-1]
     Extents = 0,0,504,270
     XLabel = " "
@@ -3148,12 +3129,44 @@ Torque nominal: 20.35 (Valor Calculado)
      {
      Options = 137
      Units = ""
-     Curve(178257184,"Vq",0,,,)
-     Curve(177790504,"Vd",0,,,)
+     Curve(83184064,"Vq",0,,,)
+     Curve(83178760,"Vd",0,,,)
      }
     }
-   0.time-sig([630,306],0,0,20)
+   0.time-sig([702,324],0,0,20)
     {
+    }
+   0.pgb([828,180],0,83185696,410)
+    {
+    Name = "Wramp"
+    Group = ""
+    Display = "0"
+    Scale = "1.0"
+    Units = ""
+    mrun = "0"
+    Pol = "0"
+    Min = "-2.0"
+    Max = "2.0"
+    }
+   -Plot-([684,396],0)
+    {
+    Title = "Velocidade Mecânica"
+    Draw = 1
+    Area = [0,0,864,486]
+    Posn = [684,396]
+    Icon = [1062,36]
+    Extents = 0,0,864,486
+    XLabel = "t [s]"
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,864,423],"Wm [RAD/S]")
+     {
+     Options = 77
+     Units = ""
+     Curve(0,"Wramp",0,,-2,)
+     Curve(83185696,"Wramp",0,,,)
+     Curve(83183248,"Wref",0,,,)
+     Curve(83182432,"Wm",0,,,)
+     }
     }
    }
   }

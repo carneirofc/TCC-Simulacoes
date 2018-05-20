@@ -2,7 +2,7 @@ PSCAD 4.2.0
 
 Settings
  {
- Id = "1334175951.1520016331"
+ Id = "1334175951.1526843932"
  Author = "rico.laisf"
  Desc = ""
  Arch = "windows"
@@ -42,7 +42,7 @@ Definitions
  Module("Torque")
   {
   Desc = ""
-  FileDate = 1519145640
+  FileDate = 1526843652
   Nodes = 
    {
    Input("Corrente",-54,-18)
@@ -402,7 +402,7 @@ Definitions
  Module("Correntes")
   {
   Desc = ""
-  FileDate = 1519145640
+  FileDate = 1526843652
   Nodes = 
    {
    Output("Corrente",54,0)
@@ -810,7 +810,7 @@ Definitions
  Module("Fluxos")
   {
   Desc = ""
-  FileDate = 1519145640
+  FileDate = 1526843652
   Nodes = 
    {
    Input("Vspdq",-54,-18)
@@ -1483,7 +1483,7 @@ Definitions
  Module("CDFIGmodel")
   {
   Desc = ""
-  FileDate = 1519145640
+  FileDate = 1526843652
   Nodes = 
    {
    Input("TL",0,-72)
@@ -2047,12 +2047,12 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[683,342],5)
+  Page(B/A3,Landscape,16,[683,342],5)
    {
-   .CDFIGmodel([558,126],0,0,140)
+   .CDFIGmodel([558,126],0,0,150)
     {
     }
-   0.datatap([576,216],0,0,150)
+   0.datatap([576,216],0,0,160)
     {
     Index = "1"
     Dim = "1"
@@ -2060,7 +2060,7 @@ Definitions
     Style = "0"
     Disp = "1"
     }
-   0.var([648,306],0,138326928,20)
+   0.var([648,306],0,123074656,20)
     {
     Name = "Wref"
     Group = ""
@@ -2114,7 +2114,7 @@ Torque nominal: 20.35 (Valor Calculado)
    0.time-sig([612,378],0,0,40)
     {
     }
-   0.compar([648,378],0,0,110)
+   0.compar([648,378],0,0,120)
     {
     Pulse = "0"
     INTR = "0"
@@ -2124,7 +2124,7 @@ Torque nominal: 20.35 (Valor Calculado)
     OHi = "1"
     OLo = "0"
     }
-   0.select([720,342],0,0,120)
+   0.select([720,342],0,0,130)
     {
     A = "1"
     DPath = "1"
@@ -2144,7 +2144,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wref"
     }
-   -SrcFile-([666,54],0)
+   -SrcFile-([1008,288],0)
     {
    Name = "controlador-vf.c"
     }
@@ -2617,10 +2617,10 @@ Torque nominal: 20.35 (Valor Calculado)
    0.ground([54,450],4,0,-1)
     {
     }
-   1.svpwm([936,108],0,0,230)
+   1.svpwm([882,144],0,0,230)
     {
     }
-   -SrcFile-([666,126],0)
+   -SrcFile-([1008,360],0)
     {
    Name = "svpwm.C"
     }
@@ -2720,19 +2720,19 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Arm3"
     }
-   0.datalabel([990,144],0,0,-1)
+   0.datalabel([936,180],0,0,-1)
     {
     Name = "Arm3"
     }
-   0.datalabel([990,108],0,0,-1)
+   0.datalabel([936,144],0,0,-1)
     {
     Name = "Arm2"
     }
-   0.datalabel([990,72],0,0,-1)
+   0.datalabel([936,108],0,0,-1)
     {
     Name = "Arm1"
     }
-   0.datalabel([774,90],0,0,-1)
+   0.datalabel([684,126],0,0,-1)
     {
     Name = "Wref"
     }
@@ -2805,10 +2805,10 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;-72,0"
     }
-   1.ControleVFwref([828,108],0,0,160)
+   1.ControleVFwref([774,144],0,0,170)
     {
     }
-   0.datalabel([774,126],1,0,-1)
+   0.datalabel([684,162],2,0,-1)
     {
     Name = "Wm"
     }
@@ -2816,21 +2816,21 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wm"
     }
-   0.buffer([108,828],0,0,260)
+   0.buffer([108,828],0,0,250)
     {
     HI = "1"
     LO = "0"
     Inv = "0"
     INTR = "0"
     }
-   0.buffer([108,738],0,0,270)
+   0.buffer([108,738],0,0,260)
     {
     HI = "1"
     LO = "0"
     Inv = "0"
     INTR = "0"
     }
-   0.buffer([108,648],0,0,290)
+   0.buffer([108,648],0,0,280)
     {
     HI = "1"
     LO = "0"
@@ -2853,12 +2853,12 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Vc"
     }
-   0.polar_rec([216,1008],0,0,180)
+   0.polar_rec([216,1008],0,0,190)
     {
     Dir = "1"
     AngUnit = "0"
     }
-   0.sumjct([288,1026],0,0,190)
+   0.sumjct([288,1026],0,0,200)
     {
     DPath = "1"
     A = "0"
@@ -2869,20 +2869,16 @@ Torque nominal: 20.35 (Valor Calculado)
     F = "-1"
     G = "0"
     }
-   0.emtconst([252,1062],0,0,90)
+   0.emtconst([252,1062],0,0,100)
     {
     Name = ""
     Value = "4"
     }
-   1.ABCtoAlfBet([126,1008],0,0,170)
+   1.ABCtoAlfBet([126,1008],0,0,180)
     {
     inv = "0"
     }
-   -SrcFile-([576,792],0)
-    {
-   Name = "fafa.c"
-    }
-   0.datalabel([630,738],0,0,-1)
+   0.datalabel([594,774],0,0,-1)
     {
     Name = "ExIq"
     }
@@ -2890,22 +2886,22 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "ExId"
     }
-   0.datalabel([558,666],0,0,-1)
+   0.datalabel([594,702],0,0,-1)
     {
     Name = "ExVd"
     }
-   0.datalabel([612,630],2,0,-1)
+   0.datalabel([594,810],0,0,-1)
     {
     Name = "Exf"
     }
-   1.REDEneural([612,684],0,0,280)
+   1.REDEneural([702,774],0,0,340)
     {
     }
    0.datalabel([324,1026],0,0,-1)
     {
     Name = "Theta"
     }
-   0.emtconst([468,1062],0,0,100)
+   0.emtconst([468,1062],0,0,110)
     {
     Name = ""
     Value = "1"
@@ -2917,30 +2913,30 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Exf"
     }
-   0.ratelimit([432,1026],0,0,210)
+   0.ratelimit([432,1026],0,0,220)
     {
     IR = "100000 [1/s]"
     DR = "100000 [1/s]"
     COM = "Rate_Limiter"
     }
-   0.derivative([360,1026],0,0,200)
+   0.derivative([360,1026],0,0,210)
     {
     T = "1 [s]"
     COM = "Derivative"
     }
-   0.datalabel([882,72],0,0,-1)
+   0.datalabel([828,108],0,0,-1)
     {
     Name = "Va"
     }
-   0.datalabel([882,108],0,0,-1)
+   0.datalabel([828,144],0,0,-1)
     {
     Name = "Vb"
     }
-   0.datalabel([882,144],0,0,-1)
+   0.datalabel([828,180],0,0,-1)
     {
     Name = "Vc"
     }
-   0.pgb([576,216],0,138664344,430)
+   0.pgb([576,216],0,123109744,440)
     {
     Name = "Wm"
     Group = ""
@@ -2952,7 +2948,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.pgb([666,684],0,138665568,340)
+   0.pgb([792,756],0,123111376,60)
     {
     Name = "W_est"
     Group = ""
@@ -2964,11 +2960,11 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.datalabel([666,684],0,0,-1)
+   0.datalabel([792,756],0,0,-1)
     {
     Name = "West"
     }
-   0.pgb([792,180],1,138666792,440)
+   0.pgb([738,216],1,122989792,430)
     {
     Name = "Wref"
     Group = ""
@@ -2988,7 +2984,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wm"
     }
-   0.sumjct([666,504],0,0,300)
+   0.sumjct([666,504],0,0,290)
     {
     DPath = "1"
     A = "0"
@@ -2999,7 +2995,7 @@ Torque nominal: 20.35 (Valor Calculado)
     F = "-1"
     G = "0"
     }
-   0.pgb([702,504],0,138667608,360)
+   0.pgb([702,504],0,122982448,360)
     {
     Name = "Erro (rad/s)"
     Group = ""
@@ -3011,7 +3007,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.datalabel([756,198],2,0,-1)
+   0.datalabel([648,162],2,0,-1)
     {
     Name = "West"
     }
@@ -3019,7 +3015,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Is"
     }
-   0.datatap([342,828],0,0,60)
+   0.datatap([342,828],0,0,70)
     {
     Index = "1"
     Dim = "1"
@@ -3027,7 +3023,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Style = "0"
     Disp = "1"
     }
-   0.datatap([342,864],0,0,70)
+   0.datatap([342,864],0,0,80)
     {
     Index = "2"
     Dim = "1"
@@ -3035,7 +3031,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Style = "0"
     Disp = "1"
     }
-   0.datatap([342,900],0,0,80)
+   0.datatap([342,900],0,0,90)
     {
     Index = "3"
     Dim = "1"
@@ -3059,7 +3055,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Vc"
     }
-   1.ABCtoDQ([396,684],0,0,220)
+   1.ABCtoDQ([396,684],0,0,270)
     {
     inv = "0"
     }
@@ -3071,7 +3067,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Theta"
     }
-   1.ABCtoDQ([396,864],0,0,250)
+   1.ABCtoDQ([396,864],0,0,310)
     {
     inv = "0"
     }
@@ -3091,12 +3087,12 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "ExVq"
     }
-   1.CargaLinear([558,18],0,0,130)
+   1.CargaLinear([558,18],0,0,140)
     {
     k = "2"
     A = ".1"
     }
-   0.pgb([540,1026],0,138681072,310)
+   0.pgb([540,1026],0,122985304,300)
     {
     Name = "<Untitled>"
     Group = ""
@@ -3144,12 +3140,12 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;18,0"
     }
-   -Plot-([846,450],0)
+   -Plot-([1170,288],0)
     {
     Title = "Erro do estimador neral"
     Draw = 1
     Area = [0,0,702,216]
-    Posn = [846,450]
+    Posn = [1170,288]
     Icon = [990,450]
     Extents = 0,0,702,216
     XLabel = " "
@@ -3158,19 +3154,15 @@ Torque nominal: 20.35 (Valor Calculado)
      {
      Options = 69
      Units = ""
-     Curve(138667608,"Erro (rad/s)",0,,,)
+     Curve(122982448,"Erro (rad/s)",0,,,)
      }
     }
-   0.datalabel([558,702],0,0,-1)
-    {
-    Name = "ExVq"
-    }
-   -Plot-([846,198],0)
+   -Plot-([1170,18],0)
     {
     Title = "Velocidade Mecânica"
     Draw = 1
     Area = [0,0,702,252]
-    Posn = [846,198]
+    Posn = [1170,18]
     Icon = [1026,18]
     Extents = 0,0,702,252
     XLabel = " "
@@ -3179,20 +3171,48 @@ Torque nominal: 20.35 (Valor Calculado)
      {
      Options = 69
      Units = ""
-     Curve(138666792,"Wref",0,,,)
-     Curve(138664344,"Wm",0,,,)
-     Curve(138665568,"W_est",0,,,)
+     Curve(122989792,"Wref",0,,,)
+     Curve(123109744,"Wm",0,,,)
+     Curve(123111376,"W_est",0,,,)
      }
     }
-   -ControlPanel-([756,234],0)
+   -ControlPanel-([828,270],0)
     {
     Name = "Wref"
     Flags = 0
     State = 1
     Icon = -1,-1
-    Posn = 756,234
-    Extents = 0,0,0,0
-    Slider(138326928)
+    Posn = 828,270
+    Extents = 0,0,144,252
+    Slider(123074656)
+    }
+   -Wire-([720,162],0,0,-1)
+    {
+    Vertex="0,0;-36,0"
+    }
+   -Wire-([720,126],0,0,-1)
+    {
+    Vertex="0,0;-36,0"
+    }
+   -Wire-([756,756],0,0,-1)
+    {
+    Vertex="0,0;36,0"
+    }
+   -Wire-([648,738],0,0,-1)
+    {
+    Vertex="0,0;0,-36;-54,-36"
+    }
+   -Wire-([594,738],0,0,-1)
+    {
+    Vertex="0,0;36,0;36,18;54,18"
+    }
+   -Wire-([594,774],0,0,-1)
+    {
+    Vertex="0,0;54,0"
+    }
+   -Wire-([594,810],0,0,-1)
+    {
+    Vertex="0,0;36,0;36,-18;54,-18"
     }
    }
   }
