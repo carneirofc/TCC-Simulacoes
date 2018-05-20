@@ -3,6 +3,9 @@
 *.emt
 *.bak
 
+/*.bak/
+/*.emt/
+
 
 # Created by https://www.gitignore.io/api/code
 
