@@ -2,8 +2,8 @@ PSCAD 4.2.0
 
 Settings
  {
- Id = "1334175951.1520519801"
- Author = "rico.claud"
+ Id = "1334175951.1526840561"
+ Author = "rico.laisf"
  Desc = ""
  Arch = "windows"
  Options = 32
@@ -42,7 +42,7 @@ Definitions
  Module("Torque")
   {
   Desc = ""
-  FileDate = 1520379240
+  FileDate = 1526840533
   Nodes = 
    {
    Input("Corrente",-54,-18)
@@ -92,7 +92,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.import([36,18],0,0,10)
     {
@@ -402,7 +402,7 @@ Definitions
  Module("Correntes")
   {
   Desc = ""
-  FileDate = 1520379240
+  FileDate = 1526840533
   Nodes = 
    {
    Output("Corrente",54,0)
@@ -435,7 +435,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.datalabel([252,144],0,0,-1)
     {
@@ -810,7 +810,7 @@ Definitions
  Module("Fluxos")
   {
   Desc = ""
-  FileDate = 1520379240
+  FileDate = 1526840533
   Nodes = 
    {
    Input("Vspdq",-54,-18)
@@ -855,7 +855,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.datalabel([180,666],0,0,-1)
     {
@@ -1483,7 +1483,7 @@ Definitions
  Module("CDFIGmodel")
   {
   Desc = ""
-  FileDate = 1520379240
+  FileDate = 1526840533
   Nodes = 
    {
    Input("TL",0,-72)
@@ -1532,7 +1532,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(A/A4,Landscape,16,[683,342],5)
    {
    0.import([576,360],5,0,80)
     {
@@ -2020,7 +2020,7 @@ Definitions
  Module("Main")
   {
   Desc = ""
-  FileDate = 0
+  FileDate = 1526840533
   Nodes = 
    {
    }
@@ -2031,7 +2031,7 @@ Definitions
    }
 
 
-  Page(A/A4,Landscape,16,[800,408],5)
+  Page(B/A3,Landscape,16,[683,342],5)
    {
    .CDFIGmodel([432,144],0,0,420)
     {
@@ -2258,7 +2258,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;-72,0"
     }
-   0.pgb([684,54],0,123109056,30)
+   0.pgb([684,54],0,122308016,30)
     {
     Name = "Wref"
     Group = ""
@@ -2274,7 +2274,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wm"
     }
-   -SrcFile-([252,0],0)
+   -SrcFile-([612,360],0)
     {
    Name = "vectorcontrol.c"
     }
@@ -2306,7 +2306,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wref"
     }
-   0.pgb([252,378],4,123118440,740)
+   0.pgb([252,378],4,122314136,740)
     {
     Name = "Id_ref"
     Group = ""
@@ -2342,7 +2342,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;0,-36"
     }
-   0.pgb([288,378],0,123120072,720)
+   0.pgb([288,378],0,122304752,720)
     {
     Name = "Iq_ref"
     Group = ""
@@ -2422,7 +2422,7 @@ Torque nominal: 20.35 (Valor Calculado)
     T = "1 [s]"
     COM = "Derivative"
     }
-   0.pgb([72,450],1,123130680,700)
+   0.pgb([72,450],1,122327600,700)
     {
     Name = "W_est"
     Group = ""
@@ -2462,7 +2462,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "ExVq"
     }
-   0.pgb([540,1080],3,123127008,630)
+   0.pgb([540,1080],3,122322296,630)
     {
     Name = "f"
     Group = ""
@@ -2532,7 +2532,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "West"
     }
-   0.pgb([720,198],3,123133128,820)
+   0.pgb([720,198],3,122342696,820)
     {
     Name = "W_est_Filtro"
     Group = ""
@@ -2575,7 +2575,7 @@ Torque nominal: 20.35 (Valor Calculado)
     F = "-1"
     G = "0"
     }
-   0.pgb([738,1008],0,123141288,670)
+   0.pgb([738,1008],0,122339432,670)
     {
     Name = "Erro (rad/s)"
     Group = ""
@@ -2602,7 +2602,7 @@ Torque nominal: 20.35 (Valor Calculado)
     F = "-1"
     G = "0"
     }
-   0.pgb([864,1008],0,123142920,660)
+   0.pgb([864,1008],0,122332088,660)
     {
     Name = "Erro Filtro (rad/s)"
     Group = ""
@@ -2631,7 +2631,7 @@ Torque nominal: 20.35 (Valor Calculado)
     COM = "Gain"
     Dim = "1"
     }
-   0.pgb([864,1152],0,123135576,600)
+   0.pgb([864,1152],0,122341064,600)
     {
     Name = "Erro Filtro %"
     Group = ""
@@ -2653,7 +2653,7 @@ Torque nominal: 20.35 (Valor Calculado)
     COM = "Gain"
     Dim = "1"
     }
-   0.pgb([738,1152],0,123138024,610)
+   0.pgb([738,1152],0,122332496,610)
     {
     Name = "Erro %"
     Group = ""
@@ -2680,24 +2680,6 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;18,0"
     }
-   -Plot-([1170,252],0)
-    {
-    Title = "$(GROUP) : Graphs"
-    Draw = 1
-    Area = [0,0,396,198]
-    Posn = [1170,252]
-    Icon = [-1,-1]
-    Extents = 0,0,396,198
-    XLabel = " "
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,396,135],"y")
-     {
-     Options = 11
-     Units = ""
-     Curve(123138024,"Erro %",0,,-2,)
-     Curve(123135576,"Erro Filtro %",0,,,)
-     }
-    }
    0.datatap([252,342],4,0,770)
     {
     Index = "3"
@@ -2718,7 +2700,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;0,-36"
     }
-   0.pgb([288,342],0,123148224,760)
+   0.pgb([288,342],0,122331272,760)
     {
     Name = "Vq_ref"
     Group = ""
@@ -2730,7 +2712,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.pgb([252,342],4,123153120,780)
+   0.pgb([252,342],4,122339024,780)
     {
     Name = "Vd_ref"
     Group = ""
@@ -2742,7 +2724,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Min = "-2.0"
     Max = "2.0"
     }
-   0.pgb([288,306],0,123152304,800)
+   0.pgb([288,306],0,122332904,800)
     {
     Name = "Int_e_w"
     Group = ""
@@ -2762,7 +2744,7 @@ Torque nominal: 20.35 (Valor Calculado)
     Style = "0"
     Disp = "1"
     }
-   0.pgb([342,432],3,123150264,690)
+   0.pgb([342,432],3,122531664,690)
     {
     Name = "Va"
     Group = ""
@@ -2778,7 +2760,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wrampa"
     }
-   0.pgb([360,558],0,123155976,680)
+   0.pgb([360,558],0,122529216,680)
     {
     Name = "Wrampa"
     Group = ""
@@ -2824,7 +2806,7 @@ Torque nominal: 20.35 (Valor Calculado)
    1.svpwm([396,468],0,0,460)
     {
     }
-   -SrcFile-([180,0],0)
+   -SrcFile-([612,468],0)
     {
    Name = "svpwm.C"
     }
@@ -2836,16 +2818,16 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;-54,0;-54,-18"
     }
-   -SrcFile-([522,180],0)
+   -SrcFile-([612,270],0)
     {
    Name = "rna_iq-iq1-vd1-vd-id1-id_6.c"
     }
-   -Plot-([1170,450],0)
+   -Plot-([1584,216],0)
     {
     Title = "$(GROUP) : Graphs"
     Draw = 1
     Area = [0,0,414,198]
-    Posn = [1170,450]
+    Posn = [1584,216]
     Icon = [-1,-1]
     Extents = 0,0,414,198
     XLabel = " "
@@ -2854,43 +2836,8 @@ Torque nominal: 20.35 (Valor Calculado)
      {
      Options = 129
      Units = ""
-     Curve(123153120,"Vd_ref",0,,,)
-     Curve(123148224,"Vq_ref",0,,,)
-     }
-    }
-   -Plot-([792,450],0)
-    {
-    Title = "$(GROUP) : Graphs"
-    Draw = 1
-    Area = [0,0,378,198]
-    Posn = [792,450]
-    Icon = [-1,-1]
-    Extents = 0,0,378,198
-    XLabel = " "
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,378,135],"y")
-     {
-     Options = 1
-     Units = ""
-     Curve(123120072,"Iq_ref",0,,,)
-     Curve(123118440,"Id_ref",0,,,)
-     }
-    }
-   -Plot-([1170,648],0)
-    {
-    Title = "$(GROUP) : Graphs"
-    Draw = 1
-    Area = [0,0,414,180]
-    Posn = [1170,648]
-    Icon = [-1,-1]
-    Extents = 0,0,414,180
-    XLabel = " "
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,414,117],"y")
-     {
-     Options = 129
-     Units = ""
-     Curve(123152304,"Int_e_w",0,,,)
+     Curve(122339024,"Vd_ref",0,,,)
+     Curve(122331272,"Vq_ref",0,,,)
      }
     }
    1.Wref_teste([630,54],0,0,20)
@@ -2906,7 +2853,7 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Name = "Wm"
     }
-   0.pgb([450,234],0,123147408,810)
+   0.pgb([450,234],0,122525136,810)
     {
     Name = "Wm"
     Group = ""
@@ -2921,24 +2868,6 @@ Torque nominal: 20.35 (Valor Calculado)
    -Wire-([576,144],0,0,-1)
     {
     Vertex="0,0;18,0"
-    }
-   -Plot-([792,252],0)
-    {
-    Title = "$(GROUP) : Graphs"
-    Draw = 1
-    Area = [0,0,378,198]
-    Posn = [792,252]
-    Icon = [-1,-1]
-    Extents = 0,0,378,198
-    XLabel = " "
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,378,135],"y")
-     {
-     Options = 43
-     Units = ""
-     Curve(123142920,"Erro Filtro (rad/s)",0,,,)
-     Curve(123141288,"Erro (rad/s)",0,,-2,1)
-     }
     }
    0.datatap([198,504],0,0,100)
     {
@@ -3633,11 +3562,11 @@ Torque nominal: 20.35 (Valor Calculado)
     {
     Vertex="0,0;0,-36;108,-36"
     }
-   -Sticky-([468,270],0)
+   -Sticky-([792,450],0)
     {
     Name = ""
     Font = 1
-    Bounds = 468,270,792,612
+    Bounds = 792,450,1566,756
     Alignment = 0
     Style = 1
     Arrow = 0
@@ -3661,44 +3590,10 @@ BONS resultados utilizando amostras passadas
 6 se perdeu no caminho ...
 "
     }
-   -Plot-([792,648],0)
-    {
-    Title = "$(GROUP) : Graphs"
-    Draw = 1
-    Area = [0,0,378,180]
-    Posn = [792,648]
-    Icon = [-1,-1]
-    Extents = 0,0,378,180
-    XLabel = " "
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,378,117],"y")
-     {
-     Options = 136
-     Units = ""
-     Curve(123150264,"Va",0,,,)
-     }
-    }
    0.const([540,144],0,0,70)
     {
     Name = ""
     Value = "120"
-    }
-   -Plot-([486,612],0)
-    {
-    Title = "$(GROUP) : Graphs"
-    Draw = 1
-    Area = [0,0,306,216]
-    Posn = [486,612]
-    Icon = [-1,-1]
-    Extents = 0,0,306,216
-    XLabel = " "
-    AutoPan = "false,75"
-    Graph([0,0],[0,0,306,153],"y")
-     {
-     Options = 129
-     Units = ""
-     Curve(123127008,"f",0,,,)
-     }
     }
    -Wire-([234,558],0,0,-1)
     {
@@ -3715,6 +3610,58 @@ BONS resultados utilizando amostras passadas
     Max = "10.0"
     Min = "-10.0"
     }
+   -Plot-([2016,216],0)
+    {
+    Title = "$(GROUP) : Graphs"
+    Draw = 1
+    Area = [0,0,414,198]
+    Posn = [2016,216]
+    Icon = [-1,-1]
+    Extents = 0,0,414,198
+    XLabel = " "
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,414,135],"y")
+     {
+     Options = 136
+     Units = ""
+     Curve(122531664,"Va",0,,,)
+     }
+    }
+   -Plot-([2016,0],0)
+    {
+    Title = "$(GROUP) : Graphs"
+    Draw = 1
+    Area = [0,0,414,198]
+    Posn = [2016,0]
+    Icon = [-1,-1]
+    Extents = 0,0,414,198
+    XLabel = " "
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,414,135],"y")
+     {
+     Options = 129
+     Units = ""
+     Curve(122332904,"Int_e_w",0,,,)
+     }
+    }
+   -Plot-([1584,432],0)
+    {
+    Title = "$(GROUP) : Graphs"
+    Draw = 1
+    Area = [0,0,414,198]
+    Posn = [1584,432]
+    Icon = [-1,-1]
+    Extents = 0,0,414,198
+    XLabel = " "
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,414,135],"y")
+     {
+     Options = 1
+     Units = ""
+     Curve(122304752,"Iq_ref",0,,,)
+     Curve(122314136,"Id_ref",0,,,)
+     }
+    }
    -Plot-([792,0],0)
     {
     Title = "Velocidade Mecânica"
@@ -3729,10 +3676,63 @@ BONS resultados utilizando amostras passadas
      {
      Options = 101
      Units = ""
-     Curve(123155976,"Wrampa",0,,,)
-     Curve(123147408,"Wm",0,,,)
-     Curve(123133128,"W_est_Filtro",0,,,)
-     Curve(123130680,"W_est",0,,-2,)
+     Curve(122529216,"Wrampa",0,,,)
+     Curve(122525136,"Wm",0,,,)
+     Curve(122342696,"W_est_Filtro",0,,,)
+     Curve(122327600,"W_est",0,,-2,)
+     }
+    }
+   -Plot-([792,252],0)
+    {
+    Title = "$(GROUP) : Graphs"
+    Draw = 1
+    Area = [0,0,396,180]
+    Posn = [792,252]
+    Icon = [-1,-1]
+    Extents = 0,0,396,180
+    XLabel = " "
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,396,117],"y")
+     {
+     Options = 43
+     Units = ""
+     Curve(122332088,"Erro Filtro (rad/s)",0,,,)
+     Curve(122339432,"Erro (rad/s)",0,,-2,1)
+     }
+    }
+   -Plot-([1188,252],0)
+    {
+    Title = "$(GROUP) : Graphs"
+    Draw = 1
+    Area = [0,0,378,180]
+    Posn = [1188,252]
+    Icon = [-1,-1]
+    Extents = 0,0,378,180
+    XLabel = " "
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,378,117],"y")
+     {
+     Options = 11
+     Units = ""
+     Curve(122332496,"Erro %",0,,-2,)
+     Curve(122341064,"Erro Filtro %",0,,,)
+     }
+    }
+   -Plot-([2016,432],0)
+    {
+    Title = "$(GROUP) : Graphs"
+    Draw = 1
+    Area = [0,0,414,198]
+    Posn = [2016,432]
+    Icon = [-1,-1]
+    Extents = 0,0,414,198
+    XLabel = " "
+    AutoPan = "false,75"
+    Graph([0,0],[0,0,414,135],"y")
+     {
+     Options = 129
+     Units = ""
+     Curve(122322296,"f",0,,,)
      }
     }
    }
