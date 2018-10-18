@@ -8,7 +8,9 @@
 #define pi 3.14159265358979323846
 #define two_pi pi * 2
 #define wBaixaRotacao 94.25
-#define limIntErroW 1.2 // Saturação da Integral do Erro (em nenhum mommento na simulação a integral passou de 0.4)
+
+// Saturação da Integral do Erro (em nenhum mommento na simulação a integral passou de 0.4)
+#define limIntErroW 1.2 
 
 // integrador
 double xout_ant = 0, xin_ant = 0;
@@ -80,6 +82,7 @@ void intreg(double* dt, double* xin, double* xout)
     int_e_W += ((e_W + e_W_Ant) / 2) * *dt;
     e_W_Ant = e_W;
 
+    // Saturação da integral do erro
     if (int_e_W >= limIntErroW || int_e_W <= -limIntErroW) {
         int_e_W = -int_e_W * *dt;
     }
@@ -88,7 +91,7 @@ void intreg(double* dt, double* xin, double* xout)
     W = W_cont + 2.0 * (*W_med);
     
     intreg(dt, &W, &teta);
-
+    
     if (W >= 188.5) {
         vref = ((W * 376) / 377.);
         if (vref >= 376)

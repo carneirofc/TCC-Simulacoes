@@ -2,7 +2,7 @@ PSCAD 4.2.0
 
 Settings
  {
- Id = "1334175951.1526853542"
+ Id = "1334175951.1526859996"
  Author = "rico.laisf"
  Desc = ""
  Arch = "windows"
@@ -24,7 +24,7 @@ Settings
   Advanced = 5631
   Debug = 0
   StartFile = ""
-  OFile = "scalar10ms.out"
+  OFile = "scalar_"
   SFile = "noname.snp"
   SnapTime = 0.3
   Mruns = 10
@@ -2036,7 +2036,7 @@ Definitions
  Module("Main")
   {
   Desc = ""
-  FileDate = 0
+  FileDate = 1526853390
   Nodes = 
    {
    }
